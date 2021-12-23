@@ -33,7 +33,7 @@ int main()
     createArr(&marks, 10, 5);
     printf("\nWe are at setArr now !");
     setArr(&marks);
-    printf("\nWe are at setArr now !");
+    printf("\nWe are at showArr now !");
     showArr(&marks);
     return 0;
 }
