@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include<stdlib.h>
 struct myArray
 {
     int total_size;

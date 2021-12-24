@@ -76,13 +76,10 @@ node *deleteWithVal(node *ptr, int val)
     {
         ptr->next = qtr->next;
         free(qtr);
-    }  
+    }
     return (start);
 
-
-
     //by using pos variable and other delete functions
-
 
     // int pos = 1;
     // while (ptr->data != val)
@@ -103,7 +100,7 @@ int main()
 {
     int pos;
     char check;
-    node *head, *second, *third, *fourth, *dummy;
+    node *head, *second, *third, *fourth, *dummy, *fifth;
     head = (node *)malloc(sizeof(node));
     second = (node *)malloc(sizeof(node));
     third = (node *)malloc(sizeof(node));
@@ -117,7 +114,9 @@ int main()
     third->data = -17;
     third->next = fourth;
     fourth->data = 14;
-    fourth->next = NULL;
+    fourth->next = fifth;
+    fifth->data = 84;
+    fifth->next = NULL;
     printf("\nBefore insertion : -");
     linkedListTraverse(head);
     printf("\nDo you want to insert (i) or delete (d) element?");
