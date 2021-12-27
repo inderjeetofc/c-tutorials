@@ -147,6 +147,24 @@ int peek(stack *ptr, int pos)
     }
     return (ptr->arr[ptr->top - pos + 1]);
 }
+int stackTop(stack *ptr)
+{
+    if (isEmpty(ptr))
+    {
+        printf("\nStack is empty !No top element exist");
+    }
+    else
+        return (ptr->arr[ptr->top]);
+}
+int stackBottom(stack *ptr)
+{
+    if (isEmpty(ptr))
+    {
+        printf("\nStack is empty !No bottom element exist");
+    }
+    else
+        return (ptr->arr[0]);
+}
 int main()
 {
     stack *s;
@@ -182,5 +200,9 @@ int main()
 
     printf("\nStack after push filled :%d", isFilled(s));
     printf("\nStack after push empty :%d", isEmpty(s));
+    val = stackTop(s);
+    printf("\nTopmost value of stack is %d", val);
+    val = stackBottom(s);
+    printf("\nBottom most value of stack is %d", val);
     return 0;
 }
