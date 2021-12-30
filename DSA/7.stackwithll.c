@@ -158,143 +158,144 @@
 //     return 0;
 // }
 
-// q.parenthesis counting prob solve using stack (using char array) (multi parenthesis prob)
+// // q.parenthesis counting prob solve using stack (using char array) (multi parenthesis prob)
 
-#include <stdio.h>
-#include <stdlib.h>
-typedef struct stackDataType
-{
-    int size;
-    int top;
-    char *arr;
-} stack;
+// #include <stdio.h>
+// #include <stdlib.h>
+// typedef struct stackDataType
+// {
+//     int size;
+//     int top;
+//     char *arr;
+// } stack;
 
-int isFull(stack *ptr)
-{
-    if (ptr->top == ptr->size - 1)
-        return 1;
-    else
-        return 0;
-}
-int isEmpty(stack *ptr)
-{
-    if (ptr->top <= -1)
-        return 1;
-    else
-        return 0;
-}
-int push(stack *ptr, char bracket)
-{
-    if (isFull(ptr))
-    {
-        printf("\nStack overflow");
-        return ptr->top;
-    }
-    else
-    {
-        ptr->top++;
-        ptr->arr[ptr->top] = bracket;
-        return ptr->top;
-    }
-}
-int popBracket(stack *ptr, char bracket, char ch)
-{
-    printf("\n i am brakcet %c %c", bracket, ch);
-    if (ch - bracket == 1 || ch - bracket == -1 || ch - bracket == -2 || ch - bracket == 2)
-    {
-        pop(ptr);
-        return 1;
-    }
-    else
-        return 0;
-}
-int pop(stack *ptr)
-{
-    // if (isEmpty(ptr))
-    // {
-    //     printf("\nStack is empty ! Expression is unbalanced");
-    //     return ptr->top;
-    // }
-    // else
-    // {
-    char *temp = &ptr->arr[ptr->top];
-    ptr->top--;
-    return (ptr->top);
-    free(temp);
-    // }
-}
-void parenthesisCheck(stack *ptr, char *arrPtr)
-{
-    int count = 0, i;
-    for (i = 0; arrPtr[i] != '\0'; i++)
-    {
-        if (arrPtr[i] == '(' || arrPtr[i] == '{' || arrPtr[i] == '[')
-        {
-            ptr->top = push(ptr, arrPtr[i]);
-            count++;
-        }
-        else if (arrPtr[i] == ')' || arrPtr[i] == '}' || arrPtr[i] == ']')
-        {
-            if (isEmpty(ptr))
-            {
-                count--;
-                printf("\nParenthesis are not matching");
-                break;
-            }
-            else
-            {
-                // ptr->top = pop(ptr);
-                int temp = popBracket(ptr, ptr->arr[ptr->top], arrPtr[i]);
-                if (!temp)
-                {
-                    printf("\nParenthesis are not matching");
-                    break;
-                }
-                else
-                    count--;
+// int isFull(stack *ptr)
+// {
+//     if (ptr->top == ptr->size - 1)
+//         return 1;
+//     else
+//         return 0;
+// }
+// int isEmpty(stack *ptr)
+// {
+//     if (ptr->top <= -1)
+//         return 1;
+//     else
+//         return 0;
+// }
+// int push(stack *ptr, char bracket)
+// {
+//     if (isFull(ptr))
+//     {
+//         printf("\nStack overflow");
+//         return ptr->top;
+//     }
+//     else
+//     {
+//         ptr->top++;
+//         ptr->arr[ptr->top] = bracket;
+//         return ptr->top;
+//     }
+// }
+// int popBracket(stack *ptr, char bracket, char ch)
+// {
+//     printf("\n i am brakcet %c %c", bracket, ch);
+//     if (ch - bracket == 1 || ch - bracket == -1 || ch - bracket == -2 || ch - bracket == 2)
+//     {
+//         pop(ptr);
+//         return 1;
+//     }
+//     else
+//         return 0;
+// }
+// int pop(stack *ptr)
+// {
+//     // if (isEmpty(ptr))
+//     // {
+//     //     printf("\nStack is empty ! Expression is unbalanced");
+//     //     return ptr->top;
+//     // }
+//     // else
+//     // {
+//     char *temp = &ptr->arr[ptr->top];
+//     ptr->top--;
+//     return (ptr->top);
+//     free(temp);
+//     // }
+// }
+// void parenthesisCheck(stack *ptr, char *arrPtr)
+// {
+//     int count = 0, i;
+//     for (i = 0; arrPtr[i] != '\0'; i++)
+//     {
+//         if (arrPtr[i] == '(' || arrPtr[i] == '{' || arrPtr[i] == '[')
+//         {
+//             ptr->top = push(ptr, arrPtr[i]);
+//             count++;
+//         }
+//         else if (arrPtr[i] == ')' || arrPtr[i] == '}' || arrPtr[i] == ']')
+//         {
+//             if (isEmpty(ptr))
+//             {
+//                 count--;
+//                 printf("\nParenthesis are not matching");
+//                 break;
+//             }
+//             else
+//             {
+//                 // ptr->top = pop(ptr);
+//                 int temp = popBracket(ptr, ptr->arr[ptr->top], arrPtr[i]);
+//                 if (!temp)
+//                 {
+//                     printf("\nParenthesis are not matching");
+//                     break;
+//                 }
+//                 else
+//                     count--;
 
-                // count--;
-            }
-        }
-    }
-    if (arrPtr[i] == '\0' && ptr->top != -1 && count != 0)
-    {
-        // printf("\nStack has %d ( parenthesis left to be balanced ! Expression is unbalanced", count);
-        printf("\nStack has parenthesis left to be balanced ! Expression is unbalanced");
-    }
-    else if (arrPtr[i] == '\0' && ptr->top <= -1 && count != 0)
-        // printf("\nStack has %d ) parenthesis left to be balanced ! Expression is unbalanced", -count);
-        printf("\nStack has parenthesis left to be balanced ! Expression is unbalanced");
-    // else
-    //     printf("\nParenthesis are perfectly matching !");
-    if (count == 0)
-    {
-        printf("\nParenthesis are perfectly matching");
-    }
-}
-int main()
-{
-    stack *s;
-    char *chArr;
-    s = (stack *)malloc(sizeof(stack));
-    s->size = 25;
-    s->top = -1;
-    s->arr = (char *)malloc(s->size * sizeof(char));
-    chArr = (char *)malloc(10 * sizeof(char));
-    printf("\nEnter expression to check parenthesis : -");
-    int i;
-    char ch;
-    for (i = 0; ch != 10; i++)
-    {
-        scanf("%c", &ch);
-        chArr[i] = ch;
-    }
-    chArr[i] = '\0';
-    for (i = 0; chArr[i] != '\0'; i++)
-    {
-        printf("%c", chArr[i]);
-    }
+//                 // count--;
+//             }
+//         }
+//     }
+//     if (arrPtr[i] == '\0' && ptr->top != -1 && count != 0)
+//     {
+//         // printf("\nStack has %d ( parenthesis left to be balanced ! Expression is unbalanced", count);
+//         printf("\nStack has parenthesis left to be balanced ! Expression is unbalanced");
+//     }
+//     else if (arrPtr[i] == '\0' && ptr->top <= -1 && count != 0)
+//         // printf("\nStack has %d ) parenthesis left to be balanced ! Expression is unbalanced", -count);
+//         printf("\nStack has parenthesis left to be balanced ! Expression is unbalanced");
+//     // else
+//     //     printf("\nParenthesis are perfectly matching !");
+//     if (count == 0)
+//     {
+//         printf("\nParenthesis are perfectly matching");
+//     }
+// }
+// int main()
+// {
+//     stack *s;
+//     char *chArr;
+//     s = (stack *)malloc(sizeof(stack));
+//     s->size = 25;
+//     s->top = -1;
+//     s->arr = (char *)malloc(s->size * sizeof(char));
+//     chArr = (char *)malloc(10 * sizeof(char));
+//     printf("\nEnter expression to check parenthesis : -");
+//     int i;
+//     char ch;
+//     for (i = 0; ch != 10; i++)
+//     {
+//         scanf("%c", &ch);
+//         chArr[i] = ch;
+//     }
+//     chArr[i] = '\0';
+//     for (i = 0; chArr[i] != '\0'; i++)
+//     {
+//         printf("%c", chArr[i]);
+//     }
 
-    parenthesisCheck(s, chArr);
-    return 0;
-}
+//     parenthesisCheck(s, chArr);
+//     return 0;
+// }
+
