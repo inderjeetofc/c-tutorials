@@ -206,7 +206,197 @@
 //     return 0;
 // }
 
-// quick sort algo
+// // quick sort algo
+// #include <stdio.h>
+// #include <stdlib.h>
+// typedef struct array
+// {
+//     int size;
+//     int capacity;
+//     int *arr;
+//     ;
+// } array;
+// array *ptr;
+// void enterArr()
+// {
+//     printf("\nEnter elements in the array : - ");
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         scanf("%d", &ptr->arr[i]);
+//     }
+// }
+// void show()
+// {
+//     printf("\nArray after sorting is : - ");
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         printf("%d , ", ptr->arr[i]);
+//     }
+// }
+// void swap(int i, int j)
+// {
+//     int temp = ptr->arr[i];
+//     ptr->arr[i] = ptr->arr[j];
+//     ptr->arr[j] = temp;
+// }
+// void quickSort(int low, int high)
+// {
+//     if (low < high)
+//     {
+//         int i = low + 1;
+//         int j = high;
+//         int pivot = low;
+//         while (i < j)
+//         {
+//             // logic not working as this is increasing i and j simultaneously
+
+//             // if (ptr->arr[i] >= ptr->arr[pivot] || ptr->arr[j] <= ptr->arr[pivot])
+//             // {
+//             //     swap(i, j);
+//             // }
+//             // i++;
+//             // j--;
+
+//             //working logic
+//             while (ptr->arr[i] < ptr->arr[pivot])
+//             {
+//                 i++;
+//             }
+//             while (ptr->arr[j] > ptr->arr[pivot])
+//             {
+//                 j--;
+//             }
+//             if (i < j)
+//             {
+
+//                 swap(i, j);
+//             }
+//         }
+//         swap(pivot, j);
+//         quickSort(low, j - 1);
+//         quickSort(j + 1, high);
+//     }
+// }
+// int main()
+// {
+//     ptr = (array *)malloc(sizeof(array));
+//     ptr->capacity = 50;
+//     ptr->size = 9;
+//     ptr->arr = (int *)malloc(ptr->size * sizeof(int));
+//     enterArr();
+//     quickSort(0, ptr->size - 1);
+//     show();
+//     return 0;
+// }
+
+// // mergesort algo
+// #include <stdio.h>
+// #include <stdlib.h>
+// typedef struct array
+// {
+//     int size;
+//     int capacity;
+//     int *arr;
+//     ;
+// } array;
+// array *ptr;
+// void enterArr()
+// {
+//     printf("\nEnter elements in the array : - ");
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         scanf("%d", &ptr->arr[i]);
+//     }
+// }
+// void show()
+// {
+//     printf("\nArray after sorting is : - ");
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         printf("%d , ", ptr->arr[i]);
+//     }
+// }
+// void swap(int i, int j)
+// {
+//     int temp = ptr->arr[i];
+//     ptr->arr[i] = ptr->arr[j];
+//     ptr->arr[j] = temp;
+// }
+// void mergeArray(int *arr, int low, int high)
+// {
+//     for (int i = low; i <= high; i++)
+//     {
+//         ptr->arr[i] = arr[i];
+//     }
+// }
+// void merge(int low, int mid, int high)
+// {
+//     int i = low;
+//     int j = mid + 1;
+//     int newArr[high - low + 1];
+//     int k = i;
+//     while (i <= mid && j <= high)
+//     {
+//         if (ptr->arr[i] < ptr->arr[j])
+//         {
+//             newArr[k] = ptr->arr[i];
+//             k++;
+//             i++;
+//         }
+//         else
+//         {
+//             newArr[k] = ptr->arr[j];
+//             k++;
+//             j++;
+//         }
+//     }
+//     while (i <= mid)
+//     {
+//         newArr[k] = ptr->arr[i];
+//         k++;
+//         i++;
+//     }
+//     while (j <= high)
+//     {
+//         newArr[k] = ptr->arr[j];
+//         k++;
+//         j++;
+//     }
+//     //debug code
+//     // printf("\ni am k : - %d", k);
+//     // printf("\nelements of k are - ");
+//     // for (int i = 0; i <= high; i++)
+//     // {
+//     //     printf("\n%d", newArr[i]);
+//     //     newArr[i] = 21;
+//     // }
+//     mergeArray(newArr, low, high);
+// }
+// void mergeSortAlgo(int low, int high)
+// {
+//     if (low < high)
+//     {
+//         int mid = (low + high) / 2;
+//         // printf("\n i am low %d, i m mid %d", low, mid);
+//         mergeSortAlgo(low, mid);
+//         // printf("\n i am mid+1 %d, i m high %d", mid + 1, high);
+//         mergeSortAlgo(mid + 1, high);
+//         merge(low, mid, high);
+//         // show();
+//     }
+// }
+// int main()
+// {
+//     ptr = (array *)malloc(sizeof(array));
+//     ptr->capacity = 50;
+//     ptr->size = 5;
+//     ptr->arr = (int *)malloc(ptr->size * sizeof(int));
+//     enterArr();
+//     mergeSortAlgo(0, ptr->size - 1);
+//     show();
+//     return 0;
+// }
+// Countsort algo
 #include <stdio.h>
 #include <stdlib.h>
 typedef struct array
@@ -239,52 +429,53 @@ void swap(int i, int j)
     ptr->arr[i] = ptr->arr[j];
     ptr->arr[j] = temp;
 }
-void quickSort(int low, int high)
+int bubbleSort()
 {
-    if (low < high)
+    int i;
+    for (i = 0; i < ptr->size - 1; i++)
     {
-        int i = low + 1;
-        int j = high;
-        int pivot = low;
-        while (i < j)
+        if (ptr->arr[i + 1] < ptr->arr[i])
         {
-            // logic not working as this is increasing i and j simultaneously
-
-            // if (ptr->arr[i] >= ptr->arr[pivot] || ptr->arr[j] <= ptr->arr[pivot])
-            // {
-            //     swap(i, j);
-            // }
-            // i++;
-            // j--;
-
-            //working logic
-            while (ptr->arr[i] < ptr->arr[pivot])
-            {
-                i++;
-            }
-            while (ptr->arr[j] > ptr->arr[pivot])
-            {
-                j--;
-            }
-            if (i < j)
-            {
-
-                swap(i, j);
-            }
+            int temp = ptr->arr[i];
+            ptr->arr[i] = ptr->arr[i + 1];
+            ptr->arr[i + 1] = temp;
         }
-        swap(pivot, j);
-        quickSort(low, j - 1);
-        quickSort(j + 1, high);
+    }
+    return ptr->arr[i];
+}
+void countSort()
+{
+    int max = bubbleSort();
+    int arr[max + 1];
+    //initialising the array with zero
+    for (int i = 0; i <= max; i++)
+    {
+        arr[i] = 0;
+    }
+    for (int i = 0; i < ptr->size; i++)
+    {
+        arr[ptr->arr[i]]++;
+    }
+    int k = 0;
+    for (int i = 0; i <= max; i++)
+    {
+        int j = arr[i];
+        while (j != 0)
+        {
+            j--;
+            ptr->arr[k] = i;
+            k++;
+        }
     }
 }
 int main()
 {
     ptr = (array *)malloc(sizeof(array));
     ptr->capacity = 50;
-    ptr->size = 9;
+    ptr->size = 5;
     ptr->arr = (int *)malloc(ptr->size * sizeof(int));
     enterArr();
-    quickSort(0, ptr->size - 1);
+    countSort(0, ptr->size - 1);
     show();
     return 0;
 }
