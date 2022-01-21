@@ -38,33 +38,33 @@
 
 //program to read content of file char by char and paste its content in other file twice
 
-// #include <stdio.h>
+#include <stdio.h>
 
-// int main()
-// {
-//     FILE *ptr, *ptr1;
-//     char ch;
-//     int j = 0;
-//     ptr1 = fopen("filetut3paste.txt", "w");
-//     printf("The content is : - \n");
-//     while (j < 2)
-//     {
-//         ptr = fopen("filetut3.txt", "r");
-//         ch = fgetc(ptr);
-//         while (ch != EOF)
-//         {
-//             printf("%c", ch);
-//             fprintf(ptr1, "%c", ch);
-//             // fputc(ch,ptr1);
-//             ch = fgetc(ptr);
-//         }
-//         j++;
-//     }
-//     fclose(ptr);
-//     fclose(ptr1);
-//     printf("\nYour content is pasted in filetut3paste.txt file ");
-//     return 0;
-// }
+int main()
+{
+    FILE *ptr, *ptr1;
+    char ch;
+    int j = 0;
+    ptr1 = fopen("filetut3paste.txt", "w");
+    printf("The content is : - \n");
+    while (j < 2)
+    {
+        ptr = fopen("filetut3.txt", "r");
+        ch = fgetc(ptr);
+        while (ch != EOF)
+        {
+            printf("%c", ch);
+            fprintf(ptr1, "%c", ch);
+            // fputc(ch,ptr1);
+            ch = fgetc(ptr);
+        }
+        j++;
+    }
+    fclose(ptr);
+    fclose(ptr1);
+    printf("\nYour content is pasted in filetut3paste.txt file ");
+    return 0;
+}
 
 // // program to take name and salaray as input and paste it to file
 // #include <stdio.h>
@@ -91,22 +91,22 @@
 // }
 
 //program to double int values in a file
-#include <stdio.h>
+// #include <stdio.h>
 
-int main()
-{
-    FILE *ptr, *ptr1;
-    char ch;
-    int a, b, i = 0;
-    ptr = fopen("filetut1.txt", "r");
-    ptr1 = fopen("filetut5.txt", "w");
-    // ch = fgetc(ptr);
-    while (i < 10)
-    {
-        fscanf(ptr, "%d", &a);
-        fprintf(ptr1, "\n%d", a * 2);
-        printf("\n%d", a * 2);
-        i++;
-    }
-    return 0;
-}
+// int main()
+// {
+//     FILE *ptr, *ptr1;
+//     char ch;
+//     int a, b, i = 0;
+//     ptr = fopen("filetut1.txt", "r");
+//     ptr1 = fopen("filetut5.txt", "w");
+//     // ch = fgetc(ptr);
+//     while (i < 10)
+//     {
+//         fscanf(ptr, "%d", &a);
+//         fprintf(ptr1, "\n%d", a * 2);
+//         printf("\n%d", a * 2);
+//         i++;
+//     }
+//     return 0;
+// }
