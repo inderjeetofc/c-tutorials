@@ -1,0 +1,1 @@
+ok so i am testing again the getline function. this will include all white spaces until i hit enter
