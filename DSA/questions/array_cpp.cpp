@@ -486,3 +486,54 @@
 //     cout << "length of largest subarray is = " << lenOfLongIncSubArr(arr, n);
 //     return 0;
 // }
+
+//q.
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> firstAndLast(vector<int> &arr, int n, int x)
+// {
+//     int high = n - 1;
+//     int low = 0;
+//     int mid;
+//     vector<int> temp;
+//     while (low <= high)
+//     {
+//         mid = (high + low) / 2;
+//         if (arr[mid] == x && arr[mid - 1] != x)
+//         {
+//             temp.push_back(mid);
+//             low = mid + 1;
+//         }
+//         if (arr[mid] == x && arr[mid + 1] != x)
+//         {
+//             temp.push_back(mid);
+//             high = mid - 1;
+//         }
+//         else if (arr[mid] > x)
+//             high = mid - 1;
+//         else if (arr[mid] < x)
+//             low = mid + 1;
+//     }
+//     if (temp.size() != 0)
+//         return temp;
+//     else
+//         temp.push_back(-1);
+//     return temp;
+// }
+// int main()
+// {
+//     vector<int> arr = {1, 3, 3, 3, 3, 4};
+//     vector<int> temp = firstAndLast(arr, 6, 3);
+//     for (int i = 0; i < temp.size(); i++)
+//     {
+//         cout << temp[i] << " ";
+//     }
+//     return 0;
+// }
+
+
+//qshuffle integers ----------------pedning
+//q Elements in the Range ----------------pedning
+//q Type of array  ----------------pedning
+//q Absolute Difference of 1  ----------------pedning
+//q Arranging the array  ----------------pedning
