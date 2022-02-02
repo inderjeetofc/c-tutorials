@@ -531,9 +531,159 @@
 //     return 0;
 // }
 
-
+//1 feb
 //qshuffle integers ----------------pedning
 //q Elements in the Range ----------------pedning
 //q Type of array  ----------------pedning
-//q Absolute Difference of 1  ----------------pedning
-//q Arranging the array  ----------------pedning
+//baap ques hai..check solution of gfg
+
+//q Absolute Difference of 1  ----------------done
+// Given an array arr of size n. Print all the numbers less than kandshould be such that the difference between every adjacent digit should be 1in the array.
+// sol -
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<long long> getDigitDiff1AndLessK(long long *arr, int n, long long k)
+// {
+//     int flag = 0;
+//     vector<long long> temp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (arr[i] < k)
+//         {
+//             int num = arr[i];
+//             while (num / 10)
+//             { //impo step
+//                 int digit1 = num % 10;
+//                 int digit2 = (num / 10) % 10;
+//                 if (abs(digit1 - digit2) != 1)
+//                 {
+//                     flag = 0;
+//                     break;
+//                 }
+//                 else
+//                     flag = 1;
+//                 num = num / 10;
+//             }
+//             if (flag == 1)
+//                 temp.push_back(arr[i]);
+//             flag = 0;
+//         }
+//     }
+//     return temp;
+// }
+// int main()
+// {
+//     long long arr[] = {7, 98, 56, 43, 45, 23, 12, 8};
+//     int n = 8;
+//     long long k = 54;
+//     vector<long long> result = getDigitDiff1AndLessK(arr, n, k);
+//     for (int i = 0; i < result.size(); i++)
+//         cout << result[i] << " ";
+//     return 0;
+// }
+
+//q Arranging the array (pos one side neg other side keeping order) ----------------try krio baadme acche se solution dekh ke
+// #include <bits/stdc++.h>
+// using namespace std;
+// void Rearrange(int arr[], int n)
+// {
+//     //unstable quick sort----wont work but still
+
+//     //   int i=-1,j=0;
+//     //   while(j<n){
+//     //       if(arr[j]<0){
+//     //           i++;
+//     //           swap(arr[i],arr[j]);
+//     //       }
+//     //       j++;
+//     //   }
+
+//     //insertion sort-thoda modified ---time limit exceed ho jaegi isme
+//     int temp, j;
+//     for (int i = 1; i < n; i++)
+//     {
+//         j = i - 1;
+//         temp = arr[i];
+//         while (j >= 0)
+//         {
+//             if (temp < 0 && arr[j] > 0)
+//             {
+//                 arr[j + 1] = arr[j];
+//                 j--;
+//             }
+//             else
+//                 break;
+//         }
+//         j++;
+//         arr[j] = temp;
+//     }
+// }
+// int main()
+// {
+//     int arr[] = {2, -4, 7, -3, 4};
+//     int n = 5;
+//     Rearrange(arr, n);
+//     for (int i = 0; i < n; i++)
+//         cout << arr[i] << " ";
+//     return 0;
+// }
+
+//easy section ques 1 feb 2022
+//q1-----------pending--------------------(Top K Frequent Elements in Array)Given a non-empty array of integers, find the top k elements which have the highest frequency in the array. If two numbers have the same frequency then the larger number should be given preference.
+
+
+//q-2 Given two unsorted arrays arr1[] and arr2[]. They may contain duplicates. For each element in arr1[] count elements less than or equal to it in array arr2[].
+// #include <bits/stdc++.h>
+// using namespace std;
+// int binarySearch(int arr2[], int low, int high, int num)
+// {
+//     int mid;
+//     while (low <= high)
+//     {
+//         mid = (high + low) / 2;
+//         if (arr2[mid] <= num)
+//             low = mid + 1;
+//         else
+//             high = mid - 1;
+//     }
+//     return high + 1;
+// }
+// vector<int> countEleLessThanOrEqual(int arr1[], int arr2[],
+//                                     int m, int n)
+// {
+//     vector<int> temp;
+//     sort(arr2, arr2 + n);
+
+//     for (int i = 0; i < m; i++)
+//     {
+//         int count = binarySearch(arr2, 0, n - 1, arr1[i]);
+//         temp.push_back(count);
+//     }
+//     //upperbound method ---------------very effective
+//     //  for(int i=0;i<m;i++){
+//     //      int *ptr=upper_bound(arr2,arr2+n,arr1[i]);
+//     //     //  cout<<*ptr<<" ";
+//     //      temp.push_back(ptr-arr2);
+//     //  }
+//     return temp;
+// }
+// int main()
+// {
+//     int arr1[] = {1, 2, 3, 4, 7, 9};
+//     int arr2[] = {0, 1, 2, 1, 1, 4};
+//     // cout << "hi";
+//     vector<int> result = countEleLessThanOrEqual(arr1, arr2, 6, 6);
+//     for (int i = 0; i < result.size(); i++)
+//     {
+//         cout << result[i] << " ";
+//     }
+//     return 0;
+// }
+
+
+//feb 2
+// q-1  ------pending-----Frequencies of Limited Range Array Elements 
+//q-2------------------pedning----------Largest subarray with 0 sum 
+// q-3----------see better sol frm editorial or youtube
+// q-4----------------see editorial ---------------Union of Two Sorted Arrays
+// q-5-------pending-------Max Sum without Adjacents 
