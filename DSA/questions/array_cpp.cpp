@@ -630,7 +630,7 @@
 
 //easy section ques 1 feb 2022
 //q1-----------pending--------------------(Top K Frequent Elements in Array)Given a non-empty array of integers, find the top k elements which have the highest frequency in the array. If two numbers have the same frequency then the larger number should be given preference.
-
+//sol ------------above prob will be solved by heap. learn it and then solve
 //q-2 Given two unsorted arrays arr1[] and arr2[]. They may contain duplicates. For each element in arr1[] count elements less than or equal to it in array arr2[].
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -740,6 +740,37 @@
 // }
 
 //q-2------------------pedning----------Largest subarray with 0 sum
+// sol- using hash map
+
+// #include <bits/stdc++.h>
+// using namespace std ;
+// int maxLen(vector<int>&A, int n)
+//     {   int sum=0,max1=0;
+//     map<int ,int> freq;
+//         for(int i=0;i<n;i++){
+//             sum+=A[i];
+//             if(sum==0)
+//             max1=i+1;
+//             else
+//             {
+//                 if(freq.find(sum)!=freq.end()){
+//                     max1=max(max1,i-freq[sum]);
+//                 }
+//                 else
+//                 freq[sum]=i;
+//             }
+//         }
+//         return max1;
+//     }
+// int main(){
+//     vector<int> a {15,-2,2,-8,1,7,10,23};
+//     cout<<maxLen(a,8);
+//     return 0;
+// }
+
+
+
+
 // q-3----------see better sol frm editorial or youtube
 // q-4----------------see editorial ---------------Union of Two Sorted Arrays
 // q-5-------pending-------Max Sum without Adjacents
