@@ -631,7 +631,6 @@
 //easy section ques 1 feb 2022
 //q1-----------pending--------------------(Top K Frequent Elements in Array)Given a non-empty array of integers, find the top k elements which have the highest frequency in the array. If two numbers have the same frequency then the larger number should be given preference.
 
-
 //q-2 Given two unsorted arrays arr1[] and arr2[]. They may contain duplicates. For each element in arr1[] count elements less than or equal to it in array arr2[].
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -680,10 +679,67 @@
 //     return 0;
 // }
 
-
 //feb 2
-// q-1  ------pending-----Frequencies of Limited Range Array Elements 
-//q-2------------------pedning----------Largest subarray with 0 sum 
+// q-1  ------pending-----Frequencies of Limited Range Array Elements
+// sol
+// #include <bits/stdc++.h>
+// using namespace std;
+// void frequencyCount(vector<int> &arr, int N, int P)
+// {
+//     //big o of n time complexity ka program . but run time wrror dega yeh large input ke liye
+//     // int i = 0, j;
+//     // while (i < N)
+//     // {
+//     //     if (arr[i] <= 0)
+//     //         i++;
+//     //     else
+//     //     {
+//     //         j = arr[i] - 1;
+//     //         if (arr[j] > 0)
+//     //         {
+//     //             arr[i] = arr[j];
+//     //             arr[j] = -1;
+//     //             ;
+//     //         }
+//     //         else
+//     //         {
+//     //             arr[j]--;
+//     //             arr[i] = 0;
+//     //             i++;
+//     //         }
+//     //     }
+//     // }
+//     // for (int i = 0; i < N; i++)
+//     //     arr[i] *= -1;
+//------------------------sol using hash map
+//   map<int,int> freq;
+//          map<int,int>::iterator it;
+//         for(int i=0;i<N;i++)
+//         freq[arr[i]]++;
+//         // for(it=freq.begin();it!=freq.end();it++){
+//         //     cout<<it->first<<" "<<it->second;
+//         // }
+//         // cout<<endl;
+        
+//         for(int i=0;i<=N;i++){
+//             if(freq.find(i)!=freq.end())
+//             {
+//                 arr[i-1]=freq[i];
+//             }
+//                 else
+//                 arr[i-1]=0;
+//         }
+// }
+// int main()
+// {
+//     vector<int> arr{2, 3, 2, 3, 5};
+//     frequencyCount(arr, 5, 5);
+//     for (int i = 0; i < 5; i++)
+//         cout << arr[i] << " ";
+//     return 0;
+// }
+
+//q-2------------------pedning----------Largest subarray with 0 sum
 // q-3----------see better sol frm editorial or youtube
 // q-4----------------see editorial ---------------Union of Two Sorted Arrays
-// q-5-------pending-------Max Sum without Adjacents 
+// q-5-------pending-------Max Sum without Adjacents
