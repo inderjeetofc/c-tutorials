@@ -720,7 +720,7 @@
 //         //     cout<<it->first<<" "<<it->second;
 //         // }
 //         // cout<<endl;
-        
+
 //         for(int i=0;i<=N;i++){
 //             if(freq.find(i)!=freq.end())
 //             {
@@ -768,9 +768,77 @@
 //     return 0;
 // }
 
-
-
-
 // q-3----------see better sol frm editorial or youtube
 // q-4----------------see editorial ---------------Union of Two Sorted Arrays
-// q-5-------pending-------Max Sum without Adjacents
+// q-5-tough hai smajhna baadme kario------pending-------Max Sum without Adjacents
+
+//---4feb
+// q-1-peak element-An element is called a peak element if its value is not smaller than the value of its adjacent elements(if they exists).
+// Given an array arr[] of size N, find the index of any one of its peak elements.
+
+// sol-- using binary search just find one element that satisfies this condition
+
+// #include <iostream>
+// using namespace std;
+// int peakElement(int arr[], int n)
+// {
+//     int low = 0, high = n - 1, mid;
+//     while (low <= high)
+//     {
+//         mid = (low + high) / 2;
+//         if (arr[mid] > arr[mid + 1] && arr[mid] > arr[mid - 1])
+//         {
+//             return mid;
+//         }
+//         else if (arr[mid] > arr[mid + 1])
+//             high = mid - 1;
+//         else
+//             low = mid + 1;
+//     }
+//     return mid;
+// }
+// int main()
+// {
+//     int arr[] = {1, 2, 3,81};
+//     cout << peakElement(arr, 4);
+//     return 0;
+// }
+
+// q-2---Sorted subsequence of size 3 -------pending
+// q-3-------pending - smjh nhi aya ques-Sum of Lengths of Non-Overlapping SubArrays
+//q-4------Find duplicates in an array- Given an array a[] of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array.
+//sol--as n-1 is given this sol is better than count sort method
+// #include <iostream>
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> duplicates(int arr[], int n)
+// {
+//     vector<int> temp;
+//     bool flag = false;
+//     for (int i = 0; i < n; i++)
+//     {
+//         arr[arr[i]%n] += n; ///-----------yahan %n lagana bht zaroori hai nhi toh code error dega
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         if ((arr[i] / n) > 1)
+//         {
+//             temp.push_back(i);
+//             flag = true;
+//         }
+//     }
+//     if (!flag)
+//         temp.push_back(-1);
+//     return temp;
+// }
+// int main()
+// {
+//     int arr[] = {2, 3, 1, 2, 3};
+//     vector<int> result = duplicates(arr, 5);
+//     for (int i = 0; i < result.size(); i++)
+//         cout << result[i] << " ";
+//     return 0;
+// }
+
+
+// q-5------pending-----Subarray with given sum
