@@ -1,5 +1,5 @@
-//q.Given an unsorted array arr[] of size N, rotate it by D elements (Anti - clockwise).
-//answer - faltu code not working
+// q.Given an unsorted array arr[] of size N, rotate it by D elements (Anti - clockwise).
+// answer - faltu code not working
 
 // #include <iostream>
 // using namespace std;
@@ -51,92 +51,92 @@
 //     return 0;
 // }
 
-//above problem solved by creating a temp array
-// #include <iostream>
-// using namespace std;
-// void getElement(int *ptr, int size)
-// {
-//     for (int i = 0; i < size; i++)
-//     {
-//         cin >> ptr[i];
-//     }
-// }
-// void rotate(int *ptr, int size, int d)
-// {
-//     int temp[1000000];
-//     for (int i = 0; i < d; i++)
-//     {
-//         temp[i] = ptr[i];
-//     }
-//     for (int i = d; i < size; i++)
-//     {
-//         ptr[i - d] = ptr[i];
-//     }
-//     for (int i = 0; i < d; i++)
-//     {
-//         ptr[size - d + i] = temp[i];
-//     }
-// }
-// void display(int *ptr, int size)
-// {
-//     for (int i = 0; i < size; i++)
-//         cout << ptr[i] << " ";
-//     cout << endl;
-// }
-// int main()
-// {
-//     int T, N, D;
-//     int arr[1000000];
-//     cin >> T;
-//     while (T--)
-//     {
-//         cin >> N >> D;
-//         getElement(arr, N);
-//         rotate(arr, N, D);
-//         display(arr, N);
-//     }
-//     return 0;
-// }
+// above problem solved by creating a temp array
+//  #include <iostream>
+//  using namespace std;
+//  void getElement(int *ptr, int size)
+//  {
+//      for (int i = 0; i < size; i++)
+//      {
+//          cin >> ptr[i];
+//      }
+//  }
+//  void rotate(int *ptr, int size, int d)
+//  {
+//      int temp[1000000];
+//      for (int i = 0; i < d; i++)
+//      {
+//          temp[i] = ptr[i];
+//      }
+//      for (int i = d; i < size; i++)
+//      {
+//          ptr[i - d] = ptr[i];
+//      }
+//      for (int i = 0; i < d; i++)
+//      {
+//          ptr[size - d + i] = temp[i];
+//      }
+//  }
+//  void display(int *ptr, int size)
+//  {
+//      for (int i = 0; i < size; i++)
+//          cout << ptr[i] << " ";
+//      cout << endl;
+//  }
+//  int main()
+//  {
+//      int T, N, D;
+//      int arr[1000000];
+//      cin >> T;
+//      while (T--)
+//      {
+//          cin >> N >> D;
+//          getElement(arr, N);
+//          rotate(arr, N, D);
+//          display(arr, N);
+//      }
+//      return 0;
+//  }
 
-//above problem solving by internal rotation
-// #include <bits/stdc++.h>
-// using namespace std;
-// void getElement(int *ptr, int size)
-// {
-//     for (int i = 0; i < size; i++)
-//     {
-//         cin >> ptr[i];
-//     }
-// }
-// void rotate(int (&arr)[1000000], int low, int high)
-// {
-//     while (low < high)
-//     {
-//         int temp = arr[low];
-//         arr[low] = arr[high];
-//         arr[high] = temp;
-//         low++;
-//         high--;
-//     }
-// }
-// void display(int *ptr, int size)
-// {
-//     for (int i = 0; i < size; i++)
-//         cout << ptr[i] << " ";
-//     cout << endl;
-// }
-// int main()
-// {
-//     int T, N, D;
-//     cin >> T;
-//     int arr[1000000];
-//     while (T--)
-//     {
-//         cin >> N >> D;
-//         getElement(arr, N);
-//         // rotate(arr, 0, D - 1);
-//         // rotate(arr, D, N - 1);
-//         // rotate(arr, 0, N - 1);
+// above problem solving by internal rotation
+//  #include <bits/stdc++.h>
+//  using namespace std;
+//  void getElement(int *ptr, int size)
+//  {
+//      for (int i = 0; i < size; i++)
+//      {
+//          cin >> ptr[i];
+//      }
+//  }
+//  void rotate(int (&arr)[1000000], int low, int high)
+//  {
+//      while (low < high)
+//      {
+//          int temp = arr[low];
+//          arr[low] = arr[high];
+//          arr[high] = temp;
+//          low++;
+//          high--;
+//      }
+//  }
+//  void display(int *ptr, int size)
+//  {
+//      for (int i = 0; i < size; i++)
+//          cout << ptr[i] << " ";
+//      cout << endl;
+//  }
+//  int main()
+//  {
+//      int T, N, D;
+//      cin >> T;
+//      int arr[1000000];
+//      while (T--)
+//      {
+//          cin >> N >> D;
+//          getElement(arr, N);
+//          // rotate(arr, 0, D - 1);
+//          // rotate(arr, D, N - 1);
+//          // rotate(arr, 0, N - 1);
 
 //         //using STL
 //         reverse(arr, arr + D);
@@ -148,7 +148,7 @@
 // }
 
 // q - Given a sorted array Arr of size N and a number X, you need to find the number of occurrences of X in Arr.
-//time complexity = log(N)
+// time complexity = log(N)
 // #include<iostream>
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -166,7 +166,7 @@
 //     return 0;
 // }
 
-//q.You are given an integer N. You need to convert all zeroes of N to 5. (by converting to string)
+// q.You are given an integer N. You need to convert all zeroes of N to 5. (by converting to string)
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -189,35 +189,35 @@
 //     return 0;
 // }
 
-//q above ques by recursion
-// #include <iostream>
-// using namespace std;
-// int convertFive(int n)
-// {
-//     if (n == 0)
-//         return 0;
-//     int digit = n % 10;
-//     if (digit == 0)
-//         digit = 5;
-//     int num = convertFive(n / 10) * 10 + digit;
-//     return num;
-// }
-// int main()
-// {
-//     int n = 1000008;
-//     if (n == 0)
-//     {
-//         n = 5;
-//         cout << "num is = " << n;
-//     }
-//     else
-//         cout << "num is = " << convertFive(n);
-//     return 0;
-// }
+// q above ques by recursion
+//  #include <iostream>
+//  using namespace std;
+//  int convertFive(int n)
+//  {
+//      if (n == 0)
+//          return 0;
+//      int digit = n % 10;
+//      if (digit == 0)
+//          digit = 5;
+//      int num = convertFive(n / 10) * 10 + digit;
+//      return num;
+//  }
+//  int main()
+//  {
+//      int n = 1000008;
+//      if (n == 0)
+//      {
+//          n = 5;
+//          cout << "num is = " << n;
+//      }
+//      else
+//          cout << "num is = " << convertFive(n);
+//      return 0;
+//  }
 
-//q-Given a sorted array consisting 0’s and 1’s. The task is to find the index of first ‘1’ in the given array.
-// sol - 1 - binary search
-// 2 - lower_bound stl
+// q-Given a sorted array consisting 0’s and 1’s. The task is to find the index of first ‘1’ in the given array.
+//  sol - 1 - binary search
+//  2 - lower_bound stl
 
 // #include <iostream>
 // using namespace std;
@@ -246,9 +246,9 @@
 //     return 0;
 // }
 
-//q -Convert array into Zig-Zag fashion - read editorial of this problem
-// q- Given an array of N positive integers where all numbers occur even number of times except one number which occurs odd number of times. Find the exceptional number.
-//sol - xor of all element should give the number that appears odd no.of times
+// q -Convert array into Zig-Zag fashion - read editorial of this problem
+//  q- Given an array of N positive integers where all numbers occur even number of times except one number which occurs odd number of times. Find the exceptional number.
+// sol - xor of all element should give the number that appears odd no.of times
 
 //****** impo ques - Find triplets with zero sum
 // sol - 1 - three loops o(n^3)
@@ -288,10 +288,10 @@
 //     return 0;
 // }
 
-//q-Given an array of distinct elements. Find the third largest element in it.
-// Suppose you have A[] = {1, 2, 3, 4, 5, 6, 7}, its output will be 5 because it is the 3 largest element in the array A.
-// #include<bits/stdc++.h>
-// using namespace std;
+// q-Given an array of distinct elements. Find the third largest element in it.
+//  Suppose you have A[] = {1, 2, 3, 4, 5, 6, 7}, its output will be 5 because it is the 3 largest element in the array A.
+//  #include<bits/stdc++.h>
+//  using namespace std;
 
 // int thirdLargest(int a[], int n)
 //     {
@@ -324,8 +324,8 @@
 //     return 0;
 // }
 
-//q- Sort in specific order ----------------------------------------pending
-//sol make separate odd and even arrays.//following is just the function
+// q- Sort in specific order ----------------------------------------pending
+// sol make separate odd and even arrays.//following is just the function
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -363,7 +363,7 @@
 //         cout << arr[i] << " ";
 //     return 0;
 // }
-//q- Find the fine
+// q- Find the fine
 // Given an array of penalties fine[], an array of car numbers car[], and also the date. The task is to find the total fine which will be collected on the given date. Fine is collected from odd-numbered cars on even dates and vice versa.
 
 // #include <iostream>
@@ -408,8 +408,8 @@
 //     return 0;
 // }
 
-//q.You are given an array A, of N elements. Find minimum index based distance between two elements of the array, x and y.
-// sol - two pointer method
+// q.You are given an array A, of N elements. Find minimum index based distance between two elements of the array, x and y.
+//  sol - two pointer method
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -445,7 +445,7 @@
 
 // q.Given an array arr of N integers, write a function that returns true if there is a triplet (a, b, c) that satisfies a2 + b2 = c2, otherwise false.---------------------------------pending
 
-//q - Given an array containing n numbers. The problem is to find the length of the longest contiguous subarray such that every element in the subarray is strictly greater than its previous element in the same subarray.
+// q - Given an array containing n numbers. The problem is to find the length of the longest contiguous subarray such that every element in the subarray is strictly greater than its previous element in the same subarray.
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -487,107 +487,107 @@
 //     return 0;
 // }
 
-//q.
-// #include <bits/stdc++.h>
-// using namespace std;
-// vector<int> firstAndLast(vector<int> &arr, int n, int x)
-// {
-//     int high = n - 1;
-//     int low = 0;
-//     int mid;
-//     vector<int> temp;
-//     while (low <= high)
-//     {
-//         mid = (high + low) / 2;
-//         if (arr[mid] == x && arr[mid - 1] != x)
-//         {
-//             temp.push_back(mid);
-//             low = mid + 1;
-//         }
-//         if (arr[mid] == x && arr[mid + 1] != x)
-//         {
-//             temp.push_back(mid);
-//             high = mid - 1;
-//         }
-//         else if (arr[mid] > x)
-//             high = mid - 1;
-//         else if (arr[mid] < x)
-//             low = mid + 1;
-//     }
-//     if (temp.size() != 0)
-//         return temp;
-//     else
-//         temp.push_back(-1);
-//     return temp;
-// }
-// int main()
-// {
-//     vector<int> arr = {1, 3, 3, 3, 3, 4};
-//     vector<int> temp = firstAndLast(arr, 6, 3);
-//     for (int i = 0; i < temp.size(); i++)
-//     {
-//         cout << temp[i] << " ";
-//     }
-//     return 0;
-// }
+// q.
+//  #include <bits/stdc++.h>
+//  using namespace std;
+//  vector<int> firstAndLast(vector<int> &arr, int n, int x)
+//  {
+//      int high = n - 1;
+//      int low = 0;
+//      int mid;
+//      vector<int> temp;
+//      while (low <= high)
+//      {
+//          mid = (high + low) / 2;
+//          if (arr[mid] == x && arr[mid - 1] != x)
+//          {
+//              temp.push_back(mid);
+//              low = mid + 1;
+//          }
+//          if (arr[mid] == x && arr[mid + 1] != x)
+//          {
+//              temp.push_back(mid);
+//              high = mid - 1;
+//          }
+//          else if (arr[mid] > x)
+//              high = mid - 1;
+//          else if (arr[mid] < x)
+//              low = mid + 1;
+//      }
+//      if (temp.size() != 0)
+//          return temp;
+//      else
+//          temp.push_back(-1);
+//      return temp;
+//  }
+//  int main()
+//  {
+//      vector<int> arr = {1, 3, 3, 3, 3, 4};
+//      vector<int> temp = firstAndLast(arr, 6, 3);
+//      for (int i = 0; i < temp.size(); i++)
+//      {
+//          cout << temp[i] << " ";
+//      }
+//      return 0;
+//  }
 
-//1 feb
-//qshuffle integers ----------------pedning
-//q Elements in the Range ----------------pedning
-//q Type of array  ----------------pedning
-//baap ques hai..check solution of gfg
+// 1 feb
+// qshuffle integers ----------------pedning
+// q Elements in the Range ----------------pedning
+// q Type of array  ----------------pedning
+// baap ques hai..check solution of gfg
 
-//q Absolute Difference of 1  ----------------done
-// Given an array arr of size n. Print all the numbers less than kandshould be such that the difference between every adjacent digit should be 1in the array.
-// sol -
-// #include <bits/stdc++.h>
-// using namespace std;
-// vector<long long> getDigitDiff1AndLessK(long long *arr, int n, long long k)
-// {
-//     int flag = 0;
-//     vector<long long> temp;
-//     for (int i = 0; i < n; i++)
-//     {
-//         if (arr[i] < k)
-//         {
-//             int num = arr[i];
-//             while (num / 10)
-//             { //impo step
-//                 int digit1 = num % 10;
-//                 int digit2 = (num / 10) % 10;
-//                 if (abs(digit1 - digit2) != 1)
-//                 {
-//                     flag = 0;
-//                     break;
-//                 }
-//                 else
-//                     flag = 1;
-//                 num = num / 10;
-//             }
-//             if (flag == 1)
-//                 temp.push_back(arr[i]);
-//             flag = 0;
-//         }
-//     }
-//     return temp;
-// }
-// int main()
-// {
-//     long long arr[] = {7, 98, 56, 43, 45, 23, 12, 8};
-//     int n = 8;
-//     long long k = 54;
-//     vector<long long> result = getDigitDiff1AndLessK(arr, n, k);
-//     for (int i = 0; i < result.size(); i++)
-//         cout << result[i] << " ";
-//     return 0;
-// }
+// q Absolute Difference of 1  ----------------done
+//  Given an array arr of size n. Print all the numbers less than kandshould be such that the difference between every adjacent digit should be 1in the array.
+//  sol -
+//  #include <bits/stdc++.h>
+//  using namespace std;
+//  vector<long long> getDigitDiff1AndLessK(long long *arr, int n, long long k)
+//  {
+//      int flag = 0;
+//      vector<long long> temp;
+//      for (int i = 0; i < n; i++)
+//      {
+//          if (arr[i] < k)
+//          {
+//              int num = arr[i];
+//              while (num / 10)
+//              { //impo step
+//                  int digit1 = num % 10;
+//                  int digit2 = (num / 10) % 10;
+//                  if (abs(digit1 - digit2) != 1)
+//                  {
+//                      flag = 0;
+//                      break;
+//                  }
+//                  else
+//                      flag = 1;
+//                  num = num / 10;
+//              }
+//              if (flag == 1)
+//                  temp.push_back(arr[i]);
+//              flag = 0;
+//          }
+//      }
+//      return temp;
+//  }
+//  int main()
+//  {
+//      long long arr[] = {7, 98, 56, 43, 45, 23, 12, 8};
+//      int n = 8;
+//      long long k = 54;
+//      vector<long long> result = getDigitDiff1AndLessK(arr, n, k);
+//      for (int i = 0; i < result.size(); i++)
+//          cout << result[i] << " ";
+//      return 0;
+//  }
 
-//q Arranging the array (pos one side neg other side keeping order) ----------------try krio baadme acche se solution dekh ke
-// #include <bits/stdc++.h>
-// using namespace std;
-// void Rearrange(int arr[], int n)
-// {
-//     //unstable quick sort----wont work but still
+// q Arranging the array (pos one side neg other side keeping order) ----------------try krio baadme acche se solution dekh ke
+//  #include <bits/stdc++.h>
+//  using namespace std;
+//  void Rearrange(int arr[], int n)
+//  {
+//      //unstable quick sort----wont work but still
 
 //     //   int i=-1,j=0;
 //     //   while(j<n){
@@ -628,30 +628,30 @@
 //     return 0;
 // }
 
-//easy section ques 1 feb 2022
-//q1-----------pending--------------------(Top K Frequent Elements in Array)Given a non-empty array of integers, find the top k elements which have the highest frequency in the array. If two numbers have the same frequency then the larger number should be given preference.
-//sol ------------above prob will be solved by heap. learn it and then solve
-//q-2 Given two unsorted arrays arr1[] and arr2[]. They may contain duplicates. For each element in arr1[] count elements less than or equal to it in array arr2[].
-// #include <bits/stdc++.h>
-// using namespace std;
-// int binarySearch(int arr2[], int low, int high, int num)
-// {
-//     int mid;
-//     while (low <= high)
-//     {
-//         mid = (high + low) / 2;
-//         if (arr2[mid] <= num)
-//             low = mid + 1;
-//         else
-//             high = mid - 1;
-//     }
-//     return high + 1;
-// }
-// vector<int> countEleLessThanOrEqual(int arr1[], int arr2[],
-//                                     int m, int n)
-// {
-//     vector<int> temp;
-//     sort(arr2, arr2 + n);
+// easy section ques 1 feb 2022
+// q1-----------pending--------------------(Top K Frequent Elements in Array)Given a non-empty array of integers, find the top k elements which have the highest frequency in the array. If two numbers have the same frequency then the larger number should be given preference.
+// sol ------------above prob will be solved by heap. learn it and then solve
+// q-2 Given two unsorted arrays arr1[] and arr2[]. They may contain duplicates. For each element in arr1[] count elements less than or equal to it in array arr2[].
+//  #include <bits/stdc++.h>
+//  using namespace std;
+//  int binarySearch(int arr2[], int low, int high, int num)
+//  {
+//      int mid;
+//      while (low <= high)
+//      {
+//          mid = (high + low) / 2;
+//          if (arr2[mid] <= num)
+//              low = mid + 1;
+//          else
+//              high = mid - 1;
+//      }
+//      return high + 1;
+//  }
+//  vector<int> countEleLessThanOrEqual(int arr1[], int arr2[],
+//                                      int m, int n)
+//  {
+//      vector<int> temp;
+//      sort(arr2, arr2 + n);
 
 //     for (int i = 0; i < m; i++)
 //     {
@@ -679,47 +679,47 @@
 //     return 0;
 // }
 
-//feb 2
-// q-1  ------pending-----Frequencies of Limited Range Array Elements
-// sol
-// #include <bits/stdc++.h>
-// using namespace std;
-// void frequencyCount(vector<int> &arr, int N, int P)
-// {
-//     //big o of n time complexity ka program . but run time wrror dega yeh large input ke liye
-//     // int i = 0, j;
-//     // while (i < N)
-//     // {
-//     //     if (arr[i] <= 0)
-//     //         i++;
-//     //     else
-//     //     {
-//     //         j = arr[i] - 1;
-//     //         if (arr[j] > 0)
-//     //         {
-//     //             arr[i] = arr[j];
-//     //             arr[j] = -1;
-//     //             ;
-//     //         }
-//     //         else
-//     //         {
-//     //             arr[j]--;
-//     //             arr[i] = 0;
-//     //             i++;
-//     //         }
-//     //     }
-//     // }
-//     // for (int i = 0; i < N; i++)
-//     //     arr[i] *= -1;
+// feb 2
+//  q-1  ------pending-----Frequencies of Limited Range Array Elements
+//  sol
+//  #include <bits/stdc++.h>
+//  using namespace std;
+//  void frequencyCount(vector<int> &arr, int N, int P)
+//  {
+//      //big o of n time complexity ka program . but run time wrror dega yeh large input ke liye
+//      // int i = 0, j;
+//      // while (i < N)
+//      // {
+//      //     if (arr[i] <= 0)
+//      //         i++;
+//      //     else
+//      //     {
+//      //         j = arr[i] - 1;
+//      //         if (arr[j] > 0)
+//      //         {
+//      //             arr[i] = arr[j];
+//      //             arr[j] = -1;
+//      //             ;
+//      //         }
+//      //         else
+//      //         {
+//      //             arr[j]--;
+//      //             arr[i] = 0;
+//      //             i++;
+//      //         }
+//      //     }
+//      // }
+//      // for (int i = 0; i < N; i++)
+//      //     arr[i] *= -1;
 //------------------------sol using hash map
-//   map<int,int> freq;
-//          map<int,int>::iterator it;
-//         for(int i=0;i<N;i++)
-//         freq[arr[i]]++;
-//         // for(it=freq.begin();it!=freq.end();it++){
-//         //     cout<<it->first<<" "<<it->second;
-//         // }
-//         // cout<<endl;
+//    map<int,int> freq;
+//           map<int,int>::iterator it;
+//          for(int i=0;i<N;i++)
+//          freq[arr[i]]++;
+//          // for(it=freq.begin();it!=freq.end();it++){
+//          //     cout<<it->first<<" "<<it->second;
+//          // }
+//          // cout<<endl;
 
 //         for(int i=0;i<=N;i++){
 //             if(freq.find(i)!=freq.end())
@@ -739,8 +739,8 @@
 //     return 0;
 // }
 
-//q-2------------------pedning----------Largest subarray with 0 sum
-// sol- using hash map
+// q-2------------------pedning----------Largest subarray with 0 sum
+//  sol- using hash map
 
 // #include <bits/stdc++.h>
 // using namespace std ;
@@ -804,10 +804,51 @@
 //     return 0;
 // }
 
-// q-2---Sorted subsequence of size 3 -------pending
-// q-3-------pending - smjh nhi aya ques-Sum of Lengths of Non-Overlapping SubArrays
-//q-4------Find duplicates in an array- Given an array a[] of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array.
-//sol--as n-1 is given this sol is better than count sort method
+// q-2---Sorted subsequence of size 3 -------done
+// sol- jordaar sol hai left se min array and right se max array banao.uske baad comparision kro. pehli pair jo satisy kregi from left as output mil jaegi
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> find3Numbers(vector<int> arr, int N)
+// {
+//     int lMin[N], rMax[N], min = INT_MAX, max = INT_MIN;
+//     vector<int> temp;
+//     if (N <= 3)
+//         return temp;
+//     for (int i = 0; i < N; i++)
+//     {
+//         if (arr[i] < min)
+//             min = arr[i];
+//         lMin[i] = min;
+//     }
+//     for (int i = N - 1; i >= 0; i--)
+//     {
+//         if (arr[i] > max)
+//             max = arr[i];
+//         rMax[i] = max;
+//     }
+//     for (int i = 0; i < N; i++)
+//     {
+//         if (arr[i] > lMin[i] && arr[i] < rMax[i])
+//         {
+//             temp.push_back(lMin[i]);
+//             temp.push_back(arr[i]);
+//             temp.push_back(rMax[i]);
+//             return temp;
+//         }
+//     }
+// }
+// int main()
+// {
+//     vector<int> arr {2, 1, 5, 0, 4, 6};
+//     vector<int> result = find3Numbers(arr, 6);
+//     for (int i = 0; i < result.size(); i++)
+//         cout << result[i] << " ";
+//     return 0;
+// }
+// q-3-------pending - smjh nhi aya ques-Sum of Lengths of Non-Overlapping SubArrays***********88
+// q-4------Find duplicates in an array- Given an array a[] of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array.
+// sol--as n-1 is given this sol is better than count sort method
 // #include <iostream>
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -840,5 +881,61 @@
 //     return 0;
 // }
 
+// q-5------done----Subarray with given sum
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> subarraySum(int arr[], int n, long long s)
+// {
+    //sol- by hash map but too time consuming
+    // map<long long, int> temp;
+    // long long sum = 0;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     sum += arr[i];
+    //     temp[sum] = i + 1;
+    //     if (sum == s)
+    //     {
+    //         return {1, i + 1};
+    //     }
+    //     if (sum > s)
+    //     {
+    //         if (temp.find(sum - s) != temp.end())
+    //             return {temp[sum - s] + 1, i + 1};
+    //     }
+    // }
+    // return {-1};
 
-// q-5------pending-----Subarray with given sum
+    //sliding window mthd - fast method
+    // int a=0;
+    //     int sum=0;
+    //     if(n<=1 && s==arr[0])
+    //     return {1,1};
+    //     for(int i=0;i<=n;i++)
+    //     {
+    //         if(sum==s)
+    //         {
+    //         return {a+1,i};
+    //         }
+    //         sum+=arr[i];
+    //        if(sum>s)
+    //        {
+    //           while(sum>s){
+    //        sum-=arr[a];
+    //         a++;
+    //           }
+    //        }
+    //     }
+    //      return {-1};
+
+// }
+// int main()
+// {
+//     int arr[] = {1, 2, 3, 4, 5};
+//     vector<int> result = subarraySum(arr, 5, 12);
+//     for (int i = 0; i < result.size(); i++)
+//         cout << result[i] << " ";
+//     return 0;
+// }
+
+// 7 feb---medium array probs
+// q-The Celebrity Problem -------------pending - easy hai kr legi try krna
