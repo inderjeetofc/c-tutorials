@@ -284,23 +284,188 @@
 // }
 // ques - max sum of circular subArray
 // sol
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
+// using namespace std;
+// int maxSumCircularSubArray(int arr[], int n)
+// {
+//     int maxSum = arr[0], minSum = arr[0], sum = arr[0], res = arr[0];
+//     for (int i = 1; i < n; i++)
+//     {
+//         maxSum = max(arr[i], arr[i] + maxSum);
+//         res = max(res, maxSum);
+//         minSum = min(arr[i], minSum);
+//         sum = max(sum - minSum, sum);
+//     }
+//     return max(res, sum);
+// }
+// int main()
+// {
+//     int arr[] = {5, -2, 3, 4};
+//     cout << maxSumCircularSubArray(arr, 4) << endl;
+//     return 0;
+// }
+
+// ques find majortity element
+// sol - maurice voting algo
+// #include <bits/stdc++.h>
+// using namespace std;
+// int findMajority(int arr[], int n)
+// {
+//     // naive extra space approcah of count sort
+//     // int size = *max_element(arr, arr + n);
+//     // int temp[size + 1], element;
+//     // for (int i = 0; i <= size; i++)
+//     //     temp[i] = 0;
+//     // for (int i = 0; i < n; i++)
+//     //     temp[arr[i]]++;
+//     // for (int i = 0; i <= size; i++)
+//     // {
+//     //     if (temp[i] > n / 2)
+//     //         element = i;
+//     // }
+//     // for (int i = 0; i < n; i++)
+//     // {
+//     //     if (arr[i] == element)
+//     //         return i;
+//     // }
+//     // return -1;
+
+//     // maurice voting algo
+//     int count = 1, res = 0;
+//     for (int i = 1; i < n; i++)
+//     {
+//         if (arr[i] == arr[res])
+//             count++;
+//         else
+//             count--;
+//         if (count == 0)
+//         {
+//             res = i;
+//             count = 1;
+//         }
+//     }
+//     return res;
+// }
+// int checkIfMajority(int arr[], int n)
+// {
+//     int res = findMajority(arr, n);
+//     int count = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (arr[i] == arr[res])
+//             count++;
+//     }
+//     if (count <= n / 2)
+//         return -1;
+//     return res;
+// }
+
+// int main()
+// {
+//     int arr[] = {591, 3, 591, 5, 591, 2, 2};
+//     cout << checkIfMajority(arr, 7) << endl;
+//     return 0;
+// }
+
+// ques- flipping ones and zeros
+// sol
+// #include <iostream>
+// using namespace std;
+// void flipMajority(int arr[], int n)
+// {
+
+//     // faltu approach
+//     // int res = arr[0];
+//     // for (int i = 1; i < n; i++)
+//     //     res = res ^ arr[i];
+//     // int j = -1, flag = 0, i;
+//     // for (i = 0; i < n; i++)
+//     // {
+//     //     if (arr[i] == res)
+//     //     {
+//     //         if (flag == 0)
+//     //             j = i;
+//     //         flag = 1;
+//     //     }
+//     //     if (arr[i] != res)
+//     //     {
+//     //         if (flag == 1)
+//     //             cout << j << " to " << i - 1 << endl;
+//     //         flag = 0;
+//     //         j = i;
+//     //     }
+//     // }
+//     // cout << j << " to " << i - 1 << endl;
+
+//     // mentos zindagi approach
+//     // {1,0,0,0,1,1,1,0,0,0} ,{1,1,1,0,0,0,1} - their will always be diff of atmost 1 between grp of ones and zeros
+//     // hence always flip the second grp to have min no. of flips
+//     int temp = arr[0];
+//     for (int i = 1; i < n; i++)
+//     {
+//         if (arr[i] != arr[i - 1])
+//         {
+//             if (arr[i] != temp)
+//                 cout << i << " to ";
+//             else
+//                 cout << i - 1 << endl;
+//         }
+//     }
+//     if (arr[n - 1] != temp)
+//         cout << n - 1 << endl;
+// }
+// int main()
+// {
+//     int arr[] = {0, 0, 0, 1};
+//     flipMajority(arr, 4);
+//     return 0;
+// }
+
+// max sum of consecutive k elements
+//  sol - sliding window technique
+// #include <bits/stdc++.h>
+// using namespace std;
+// int maxSumFind(int arr[], int n, int k)
+// {
+//     int a = 0, sum = 0, maxSum = INT_MIN;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (i >= k)
+//         {
+//             maxSum = max(sum, maxSum);
+//             sum += arr[i] - arr[i - k];
+//             // sum -= arr[a];
+//             // a++;
+//         }
+//         else
+//             sum += arr[i];
+//     }
+//     maxSum = max(sum, maxSum);
+//     return maxSum;
+// }
+// int main()
+// {
+//     int arr[] = {1, 8, 30, -5, 20};
+//     cout << maxSumFind(arr, 5, 2) << endl;
+//     return 0;
+// }
+
+// ques - n bonacci series with m sum
+// sol - sliding window technique
+#include <iostream>
 using namespace std;
-int maxSumCircularSubArray(int arr[], int n)
+void mbbonacci(int n, int m)
 {
-    int maxSum = arr[0], minSum = arr[0], sum = arr[0], res = arr[0];
-    for (int i = 1; i < n; i++)
+    int i = 0;
+    while (m > 1)
     {
-        maxSum = max(arr[i], arr[i] + maxSum);
-        res = max(res, maxSum);
-        minSum = min(arr[i], minSum);
-        sum = max(sum - minSum, sum);
+        cout << 0 << " ";
+        i++;
     }
-    return max(res, sum);
+    while ()
 }
 int main()
 {
-    int arr[] = {5, -2, 3, 4};
-    cout << maxSumCircularSubArray(arr, 4) << endl;
+
     return 0;
 }
