@@ -452,20 +452,20 @@
 
 // ques - n bonacci series with m sum
 // sol - sliding window technique
-#include <iostream>
-using namespace std;
-void mbbonacci(int n, int m)
-{
-    int i = 0;
-    while (m > 1)
-    {
-        cout << 0 << " ";
-        i++;
-    }
-    while ()
-}
-int main()
-{
+// #include <iostream>
+// using namespace std;
+// void mbbonacci(int n, int m)
+// {
+//     int i = 0;
+//     while (m > 0)
+//     {
+//         cout << 0 << " ";
+//         i++;
+//     }
+//     while ()
+// }
+// int main()
+// {
 
-    return 0;
-}
+//     return 0;
+// }
