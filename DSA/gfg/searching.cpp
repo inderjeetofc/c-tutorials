@@ -228,3 +228,67 @@
 //     cout << peakElement(arr, 7) << endl;
 //     return 0;
 // }
+// ques median of two sorted arrays
+// sol
+#include <bits/stdc++.h>
+using namespace std;
+int median(int arr1[], int arr2[], int n, int m)
+{
+    int i = 0, j = 0, med1, med2, temp, count = -1;
+    med1 = (m + n) / 2;
+    while (i < n || j < m)
+    {
+        if (arr1[i] > arr2[j])
+        {
+            temp = arr1[i];
+            count++;
+            i++;
+        }
+        else if (arr1[i] < arr2[j])
+        {
+            temp = arr2[j];
+            count++;
+            j++;
+        }
+        if (count == med1)
+        {
+            // if ((n + m) % 2 == 0)
+            return temp;
+        }
+    }
+    if (j >= n)
+    {
+        while (i < n)
+        {
+            count++;
+            temp = arr1[i];
+            i++;
+            if (count == med1)
+            {
+                // if ((n + m) % 2 == 0)
+                return temp;
+            }
+        }
+    }
+    else
+    {
+        while (j < n)
+        {
+            count++;
+            temp = arr2[j];
+            j++;
+            if (count == med1)
+            {
+                // if ((n + m) % 2 == 0)
+                return temp;
+            }
+        }
+    }
+}
+int main()
+{
+    int arr1[] = {10, 20, 30, 40, 50};
+    int arr2[] = {5, 15, 25, 45, 35};
+    cout << median(arr1, arr2, 5, 5) << endl;
+    return 0;
+}
