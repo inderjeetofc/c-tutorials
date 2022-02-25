@@ -397,3 +397,96 @@
 //     cout << minDiff(arr, 7, 6) << endl;
 //     return 0;
 // }
+
+//
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main(){
+
+//     return 0;
+// }
+
+// ques-sort two types of array
+//  sol- two pointer approach
+// #include <iostream>
+// using namespace std;
+// void sortArr(int arr[], int n)
+// {
+// int i = 0, j = n - 1;
+// while (i < j)
+// {
+//     // to sort negative positive numbers
+//     if (arr[i] > 0 && arr[j] < 0)
+//     {
+//         swap(arr[i], arr[j]);
+//         i++;
+//         j--;
+//     }
+//     while (arr[i] < 0 &&i<j)
+//         i++;
+//     while (arr[j] > 0 &&i<j)
+//         j--;
+// to sort even odd numbers
+//  if (arr[i] % 2 != 0 && arr[j] % 2 == 0)
+//  {
+//      swap(arr[i], arr[j]);
+//      i++;
+//      j--;
+//  }
+//  while (arr[i] % 2 == 0)
+//      i++;
+//  while (arr[j] % 2 != 0)
+//      j--;
+// }
+// effective solution by hoarse partition
+//  }
+//  int main()
+//  {
+//      int arr[] = {-10, 12, -14, 11, -41, 13, -16, 19, -22, 5};
+//      sortArr(arr, 10);
+//      for (int i = 0; i < 10; i++)
+//          cout << arr[i] << " ";
+//      return 0;
+//  }
+
+// ques 3way partitioning prob
+// sol by quicksort algo
+// #include <iostream>
+// using namespace std;
+// int lomutoPartition(int arr[], int low, int high)
+// {
+//     int i = low, j = low, pivot = high;
+//     while (j < pivot)
+//     {
+//         if (arr[j] < arr[pivot])
+//         {
+//             swap(arr[i], arr[j]);
+//             i++, j++;
+//         }
+//         else
+//             j++;
+//     }
+//     swap(arr[i], arr[pivot]);
+//     return i;
+// }
+// void quickSort(int arr[], int low, int high)
+// {
+//     int mid;
+//     if (low < high)
+//     {
+//         mid = lomutoPartition(arr, low, high);
+//         quickSort(arr, low, mid - 1);
+//         quickSort(arr, mid + 1, high);
+//     }
+// }
+// int main()
+// {
+//     int arr[] = {2,1,2,20,10,20,1};
+//     quickSort(arr, 0, 5);
+//     for (int i = 0; i < 6; i++)
+//         cout << arr[i] << " ";
+//     return 0;
+// }
+
+//
