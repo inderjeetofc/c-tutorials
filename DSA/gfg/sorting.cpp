@@ -490,3 +490,90 @@
 // }
 
 //
+// ques merge two intervals in array -------------------------------pending
+// sol
+// #include <bits/stdc++.h>
+// using namespace std;
+// void myComp(int arr[5][2], int n)
+// {
+//     for (int i = 0; i < n; i++)
+//     {
+//         sort(arr[i][0], arr[i][0] + n)
+//     }
+// }
+// int mergeInterval(int arr[5][2], int n)
+// {
+//     int j = 0, k = 0, i = 0;
+//     sort(arr, arr + 5, myComp);
+//     while (i < n - 1)
+//     {
+//         int maxi = max(arr[i][0], arr[i + 1][0]);
+//         int mini = min(arr[i][0], arr[i + 1][0]);
+//         if (mini >= maxi)
+//         {
+//             // arr[j][0] = min(arr[i][0], arr[i + 1][0]);
+//             // arr[j][1] = max(arr[i + 1][1], arr[i][1]);
+//             // j++;
+//             i++;
+//         }
+//         else
+//         {
+//             arr[j][0] = min(arr[k][0], arr[i - 1][0]);
+//             arr[j][1] = max(arr[k][1], arr[i - 1][1]);
+//             j++;
+//             k = i;
+//             i++;
+//         }
+//     }
+//     return j;
+// }
+// int main()
+// {
+//     // int arr[4][2] = {{1, 3}, {2, 4}, {5, 7}, {6, 8}};
+//     int arr[5][2] = {{7, 9}, {6, 10}, {4, 5}, {1, 3}, {2, 4}};
+//     int j = mergeInterval(arr, 5);
+//     for (int i = 0; i < j; i++)
+//     {
+//         cout << "{" << arr[i][0] << "," << arr[i][1] << "}"
+//              << " ";
+//     }
+//     return 0;
+// }
+
+// cycle sort algo - it has minimum rights operation in  i.e minimum swapping
+// sol
+// #include <bits/stdc++.h>
+// using namespace std;
+// void cycleSort(int arr[], int n)
+// {
+//     int pos, item, cs;
+//     for (cs = 0; cs < n ; cs++)
+//     {
+//         pos = cs;
+//         item = arr[cs];
+//         for (int i = cs + 1; i < n; i++)
+//         {
+//             if (arr[i] < item)
+//                 pos++;
+//         }
+//         swap(item, arr[pos]);
+//         while (pos != cs)
+//         {
+//             pos = cs;
+//             for (int i = cs + 1; i < n; i++)
+//             {
+//                 if (arr[i] < item)
+//                     pos++;
+//             }
+//             swap(item, arr[pos]);
+//         }
+//     }
+// }
+// int main()
+// {
+//     int arr[] = {2, 5, 20, 21, 11, 27, 1};
+//     cycleSort(arr, 7);
+//     for (int i = 0; i < 7; i++)
+//         cout << arr[i] << " ";
+//     return 0;
+// }
