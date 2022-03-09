@@ -221,3 +221,167 @@
 //     cout << sumZero(arr, 5) << endl;
 //     return 0;
 // }
+
+// ques find subarray with given sum
+// sol
+// #include <bits/stdc++.h>
+// using namespace std;
+// bool subArrSum(int arr[], int n, int sum)
+// {
+//     int prefix = 0;
+//     unordered_set<int> nums;
+//     for (int i = 0; i < n; i++)
+//     {
+//         prefix += arr[i];
+//         if (prefix == sum)
+//             return true;
+//         if (nums.find(prefix - sum) != nums.end())
+//             return true;
+//         nums.insert(prefix);
+//     }
+//     return false;
+// }
+// int main()
+// {
+//     int arr[] = {1, 8, 9, 10, 1, -1};
+//     cout << subArrSum(arr, 6, 22) << endl;
+//     return 0;
+// }
+
+// ques - longest subarray with given sum
+// sol
+// #include <bits/stdc++.h>
+// using namespace std;
+// int subArrSum(int arr[], int n, int sum)
+// {
+//     int prefix = 0, len = 0;
+//     unordered_map<int, int> nums;
+//     for (int i = 0; i < n; i++)
+//     {
+//         prefix += arr[i];
+//         if (prefix == sum)
+//             len = i + 1;
+//         if (nums.find(prefix - sum) != nums.end())
+//             len = max(len, i - nums[prefix - sum]);
+//         nums.insert({prefix, i});
+//     }
+//     return len;
+// }
+// int main()
+// {
+//     int arr[] = {4, 18, 8, 9, 2, 3, -1};
+//     cout << subArrSum(arr, 7, 22) << endl;
+//     return 0;
+// }
+
+// ques longest subarray with equal no. of zeros and ones
+// sol - store zero as -1 and use algo of max subarray with given sum
+// #include <bits/stdc++.h>
+// using namespace std;
+// int equalZeroOne(int arr[], int n)
+// {
+//     unordered_map<int, int> nums;
+//     int sum, len = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (arr[i] == 0)
+//         {
+//             sum += -1;
+//             nums.insert({sum, i});
+//         }
+//         else
+//         {
+//             sum += 1;
+//             nums.insert({sum, i});
+//         }
+//         if (nums.find(sum) != nums.end())
+//             len = max(len, i - nums[sum]);
+//         if (sum == 0)
+//             len = i + 1;
+//     }
+//     return len;
+// }
+// int main()
+// {
+//     int arr[] = {0, 1, 1, 1, 1, 0, 0, 0};
+//     cout << equalZeroOne(arr, 8) << endl;
+//     return 0;
+// }
+
+// ques - longest common subarray with given sum. Given two array of equal size
+//  sol - subtract both arrays and store in temp. look for longest subarray with zero sum
+// #include <bits/stdc++.h>
+// using namespace std;
+// int common(int arr1[], int arr2[], int n)
+// {
+//     int sum = 0, len = 0;
+//     int temp[n];
+//     unordered_map<int, int> nums;
+//     for (int i = 0; i < n; i++)
+//     {
+//         temp[i] = arr1[i] - arr2[i];
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         sum += temp[i];
+//         if (sum == 0)
+//             len = i + 1;
+//         if (nums.find(sum) != nums.end())
+//             len = max(len, i - nums[sum]);
+//         nums.insert({sum, i});
+//     }
+//     return len;
+// }
+// int main()
+// {
+//     int arr1[] = {0, 0, 1, 1, 1, 0, 0, 0};
+//     int arr2[] = {0, 1, 0, 0, 1, 0, 1, 1};
+//     // ans 7
+//     cout << common(arr1, arr2, 8) << endl;
+//     return 0;
+// }
+
+// ques - find longest consecutive numbers
+// sol - hashing
+// #include <bits/stdc++.h>
+// using namespace std;
+// int longCons(int arr[], int n)
+// {
+//     int maxLen = 1, x;
+//     unordered_set<int> nums(arr, arr + n);
+//     for (int x : nums)
+//     {
+//         int len = 1;
+//         if (nums.find(x - 1) == nums.end())
+//         {
+//             while (nums.find(x + len) != nums.end())
+//                 len++;
+//         }
+//         maxLen = max(len, maxLen);
+//     }
+//     return maxLen;
+// }
+// int main()
+// {
+//     int arr[] = {7, 5, 6, 13, 22, 33};
+//     cout << longCons(arr, 6) << endl;
+//     return 0;
+// }
+// ques - find distinct element in a window
+// sol - hashing
+// #include <bits/stdc++.h>
+// using namespace std;
+// void longCons(int arr[], int n, int k)
+// {
+//     unordered_map<int, int> nums;
+//     for (int i = 0; i < n; i++)
+//     {
+//         nums[arr[i]]++;
+//     }
+// }
+// int main()
+// {
+//     int arr[] = {7, 6, 6, 6, 22, 22};
+//     longCons(arr, 6, 3);
+//     return 0;
+// }
