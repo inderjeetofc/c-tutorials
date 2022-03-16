@@ -397,85 +397,86 @@
 //     return 0;
 // }
 // Countsort algo
-#include <stdio.h>
-#include <stdlib.h>
-typedef struct array
-{
-    int size;
-    int capacity;
-    int *arr;
-    ;
-} array;
-array *ptr;
-void enterArr()
-{
-    printf("\nEnter elements in the array : - ");
-    for (int i = 0; i < ptr->size; i++)
-    {
-        scanf("%d", &ptr->arr[i]);
-    }
-}
-void show()
-{
-    printf("\nArray after sorting is : - ");
-    for (int i = 0; i < ptr->size; i++)
-    {
-        printf("%d , ", ptr->arr[i]);
-    }
-}
-void swap(int i, int j)
-{
-    int temp = ptr->arr[i];
-    ptr->arr[i] = ptr->arr[j];
-    ptr->arr[j] = temp;
-}
-int bubbleSort()
-{
-    int i;
-    for (i = 0; i < ptr->size - 1; i++)
-    {
-        if (ptr->arr[i + 1] < ptr->arr[i])
-        {
-            int temp = ptr->arr[i];
-            ptr->arr[i] = ptr->arr[i + 1];
-            ptr->arr[i + 1] = temp;
-        }
-    }
-    return ptr->arr[i];
-}
-void countSort()
-{
-    int max = bubbleSort();
-    int arr[max + 1];
-    //initialising the array with zero
-    for (int i = 0; i <= max; i++)
-    {
-        arr[i] = 0;
-    }
-    for (int i = 0; i < ptr->size; i++)
-    {
-        arr[ptr->arr[i]]++;
-    }
-    int k = 0;
-    for (int i = 0; i <= max; i++)
-    {
-        int j = arr[i];
-        while (j != 0)
-        {
-            j--;
-            ptr->arr[k] = i;
-            k++;
-        }
-    }
-}
-int main()
-{
-    ptr = (array *)malloc(sizeof(array));
-    ptr->capacity = 50;
-    ptr->size = 5;
-    ptr->arr = (int *)malloc(ptr->size * sizeof(int));
-    enterArr();
-    countSort(0, ptr->size - 1);
-    show();
-    return 0;
-}
+// #include <stdio.h>
+// #include <stdlib.h>
+// typedef struct array
+// {
+//     int size;
+//     int capacity;
+//     int *arr;
+//     ;
+// } array;
+// array *ptr;
+// void enterArr()
+// {
+//     printf("\nEnter elements in the array : - ");
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         scanf("%d", &ptr->arr[i]);
+//     }
+// }
+// void show()
+// {
+//     printf("\nArray after sorting is : - ");
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         printf("%d , ", ptr->arr[i]);
+//     }
+// }
+// void swap(int i, int j)
+// {
+//     int temp = ptr->arr[i];
+//     ptr->arr[i] = ptr->arr[j];
+//     ptr->arr[j] = temp;
+// }
+// int bubbleSort()
+// {
+//     int i;
+//     for (i = 0; i < ptr->size - 1; i++)
+//     {
+//         if (ptr->arr[i + 1] < ptr->arr[i])
+//         {
+//             int temp = ptr->arr[i];
+//             ptr->arr[i] = ptr->arr[i + 1];
+//             ptr->arr[i + 1] = temp;
+//         }
+//     }
+//     return ptr->arr[i];
+// }
+// void countSort()
+// {
+//     int max = bubbleSort();
+//     int arr[max + 1];
+//     //initialising the array with zero
+//     for (int i = 0; i <= max; i++)
+//     {
+//         arr[i] = 0;
+//     }
+//     for (int i = 0; i < ptr->size; i++)
+//     {
+//         arr[ptr->arr[i]]++;
+//     }
+//     int k = 0;
+//     for (int i = 0; i <= max; i++)
+//     {
+//         int j = arr[i];
+//         while (j != 0)
+//         {
+//             j--;
+//             ptr->arr[k] = i;
+//             k++;
+//         }
+//     }
+// }
+// int main()
+// {
+//     ptr = (array *)malloc(sizeof(array));
+//     ptr->capacity = 50;
+//     ptr->size = 5;
+//     ptr->arr = (int *)malloc(ptr->size * sizeof(int));
+//     enterArr();
+//     countSort(0, ptr->size - 1);
+//     show();
+//     return 0;
+// }
+
