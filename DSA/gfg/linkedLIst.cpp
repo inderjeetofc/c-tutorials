@@ -801,45 +801,43 @@ node *duplicateRemove(node *ptr)
     }
     return start;
 }
-node *reverseK(node *curr, int k)
+//thoda complicated hai smjhna ...-------------------------try krna smjhna ek or baar
+node *reverseK(node *head, node *pres, int k)
 {
-    int i = k;
-    node *start;
-    node *temp = curr;
-    while (i > 1)
+    node *curr = head;
+
+    if (curr == NULL)
+        return NULL;
+    int i = 0;
+    node *prev = NULL;
+    node *Next = NULL;
+    while (curr != NULL && i < k)
     {
-        temp = temp->next;
-        i--;
+        Next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = Next;
+        i++;
     }
-    while (curr->next != NULL)
+    if (Next != NULL)
     {
-        i = k;
-        node *prev = NULL;
-        start = curr;
-        // node *Next = curr->next;
-        while (i > 1)
-        {
-            node *Next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = Next;
-            i--;
-        }
+        node *link = reverseK(curr, prev, k);
+        head->next = link;
     }
-    return start;
+    return prev;
 }
 int main()
 {
     node *head = new node(90);
-    head = insertEnd(head, 90);
-    head = insertEnd(head, 90);
+    // head = insertEnd(head, 90);
+    // head = insertEnd(head, 90);
     head = insertEnd(head, 751);
     head = insertEnd(head, 919);
     // head = insertEnd(head, 919);
     // head = insertEnd(head, 919);
     // head = insertEnd(head, 1000);
     // head = insertEnd(head, 1000);
-    // head = insertEnd(head, 1000);
+    head = insertEnd(head, 1000);
     head = insertEnd(head, 1020);
     // head = insertEnd(head, 1020);
     // head = insertEnd(head, 1020);
@@ -847,7 +845,7 @@ int main()
     llTraversal(head);
     // head = duplicateRemove(head);
     // llTraversal(head);
-    head = reverseK(head, 3);
+    head = reverseK(head, NULL, 3);
     llTraversal(head);
     return 0;
 }
