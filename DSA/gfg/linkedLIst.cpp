@@ -752,13 +752,376 @@
 // }
 
 // q remove duplicateds from LL
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef struct linkedList
+// {
+//     int data;
+//     linkedList *next;
+//     // defining constructor in struct is allowed .
+//     linkedList(int data)
+//     {
+//         this->data = data;
+//         this->next = NULL;
+//     }
+// } node;
+// node *insertEnd(node *head, int data)
+// {
+//     node *dummy = new node(data);
+//     node *ptr = head;
+//     if (head == NULL)
+//         return dummy;
+//     while (ptr->next != NULL)
+//         ptr = ptr->next;
+//     ptr->next = dummy;
+//     return head;
+// }
+// void llTraversal(node *ptr)
+// {
+//     while (ptr != NULL)
+//     {
+//         cout << ptr->data << " ";
+//         ptr = ptr->next;
+//     }
+//     cout << endl;
+// }
+// node *duplicateRemove(node *ptr)
+// {
+//     node *start = ptr;
+//     while (ptr->next != NULL && ptr != NULL)
+//     {
+//         if (ptr->data == ptr->next->data)
+//         {
+//             node *temp = ptr->next;
+//             ptr->next = ptr->next->next;
+//             delete temp;
+//         }
+//         else
+//             ptr = ptr->next;
+//     }
+//     return start;
+// }
+// //thoda complicated hai smjhna ...-------------------------try krna smjhna ek or baar
+// node *reverseK(node *head, node *pres, int k)
+// {
+//     node *curr = head;
+
+//     if (curr == NULL)
+//         return NULL;
+//     int i = 0;
+//     node *prev = NULL;
+//     node *Next = NULL;
+//     while (curr != NULL && i < k)
+//     {
+//         Next = curr->next;
+//         curr->next = prev;
+//         prev = curr;
+//         curr = Next;
+//         i++;
+//     }
+//     if (Next != NULL)
+//     {
+//         node *link = reverseK(curr, prev, k);
+//         head->next = link;
+//     }
+//     return prev;
+// }
+// int main()
+// {
+//     node *head = new node(90);
+//     // head = insertEnd(head, 90);
+//     // head = insertEnd(head, 90);
+//     head = insertEnd(head, 751);
+//     head = insertEnd(head, 919);
+//     // head = insertEnd(head, 919);
+//     // head = insertEnd(head, 919);
+//     // head = insertEnd(head, 1000);
+//     // head = insertEnd(head, 1000);
+//     head = insertEnd(head, 1000);
+//     head = insertEnd(head, 1020);
+//     // head = insertEnd(head, 1020);
+//     // head = insertEnd(head, 1020);
+//     // head = insertEnd(head, 1020);
+//     llTraversal(head);
+//     // head = duplicateRemove(head);
+//     // llTraversal(head);
+//     head = reverseK(head, NULL, 3);
+//     llTraversal(head);
+//     return 0;
+// }
+
+// q - detect loop in LL
+// #include <bits/stdc++.h>
+// using namespace std;
+// // method -1 - modify LL struct and add visted variable
+// typedef struct linkedList
+// {
+//     int data;
+//     bool visited;
+//     linkedList *next;
+//     linkedList(int data)
+//     {
+//         this->data = data;
+//         this->next = NULL;
+//         this->visited = 0;
+//     }
+// } node;
+// node *insertEnd(node *head, int data)
+// {
+//     node *dummy = new node(data);
+//     node *ptr = head;
+//     while (ptr->next != NULL)
+//     {
+//         ptr = ptr->next;
+//     }
+//     ptr->next = dummy;
+//     return head;
+// }
+// void displayLL(node *head)
+// {
+//     node *ptr = head;
+//     while (ptr != NULL)
+//     {
+//         cout << ptr->data << " ";
+//         ptr = ptr->next;
+//     }
+//     cout << endl;
+// }
+// node *loopLL(node *head)
+// {
+//     int count = 0;
+//     node *ptr = head;
+//     node *temp;
+//     while (ptr != NULL)
+//     {
+//         ptr = ptr->next;
+//         count++;
+//     }
+//     ptr = head;
+//     int random = 1 + (rand() % count);
+//     for (int i = 1; i < random; i++)
+//     {
+//         ptr = ptr->next;
+//     }
+//     temp = ptr;
+//     ptr = head;
+//     while (ptr->next != NULL)
+//     {
+//         ptr = ptr->next;
+//     }
+//     ptr->next = temp;
+//     return temp;
+// }
+// void displayLoop(node *head)
+// {
+//     node *ptr = head;
+//     while (ptr->next != head)
+//     {
+//         cout << ptr->data << " ";
+//         ptr = ptr->next;
+//     }
+//     cout << ptr->data << endl;
+// }
+// bool detectLoop(node *head)
+// {
+//     node *ptr = head;
+//     while (ptr != NULL)
+//     {
+//         if (ptr->visited == 1)
+//             return true;
+//         if (ptr->next == NULL)
+//             return false;
+//         ptr->visited = 1;
+//         ptr = ptr->next;
+//     }
+//     return false;
+// }
+// // method 2 with hashing
+// bool detectLoopHash(node *head)
+// {
+//     unordered_set<node *> s;
+//     node *ptr = head;
+//     while (ptr != NULL)
+//     {
+//         if (s.find(ptr) != s.end())
+//         {
+//             return true;
+//         }
+//         s.insert(ptr);
+//         ptr = ptr->next;
+//     }
+//     return false;
+// }
+// // method -3 using floyd algo-
+// // here we use two ptrs slow and fast and increment them . slow by 1 and fast by 2;
+// // if there is a loop they will meet ata point else fats will move to null
+// bool floydAlgo(node *head)
+// {
+//     node *slow = head;
+//     node *fast = head;
+//     while (fast != NULL && fast->next != NULL)
+//     {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//         if (slow == fast)
+//             return true;
+//     }
+//     return false;
+// }
+// node *removeLoop(node *head)
+// {
+//     node *slow = head;
+//     node *fast = head;
+//     while (fast != NULL && fast->next != NULL)
+//     {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//         // --------by using temp ptr
+//         // node *temp = fast;
+//         // if (slow == fast)
+//         //     temp->next = NULL;
+//         if (slow == fast)
+//         {
+//             slow = head;
+//             break;
+//         }
+//     }
+//     while (slow->next != fast->next)
+//     {
+//         slow = slow->next;
+//         fast = fast->next;
+//     }
+//     fast->next = NULL;
+//     return head;
+// }
+// int lengthOfLoop(node *head)
+// {
+//     node *slow = head;
+//     node *fast = head;
+//     while (fast != NULL && fast->next != NULL)
+//     {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//         if (slow == fast)
+//             break;
+//     }
+//     int count = 1;
+//     while (fast->next != slow)
+//     {
+//         fast = fast->next;
+//         count++;
+//     }
+//     return count;
+// }
+// node *headOfLoop(node *head)
+// {
+//     node *slow = head;
+//     node *fast = head;
+//     while (fast != NULL && fast->next != NULL)
+//     {
+//         slow = slow->next;
+//         fast = fast->next->next;
+//         if (slow == fast)
+//             break;
+//     }
+//     slow = head;
+//     while (slow->next != fast->next)
+//     {
+//         slow = slow->next;
+//         fast = fast->next;
+//     }
+//     return fast->next;
+// }
+// int main()
+// {
+//     srand((unsigned)time(NULL));
+//     node *head = new node(89);
+//     head = insertEnd(head, 63);
+//     head = insertEnd(head, -9);
+//     head = insertEnd(head, -76);
+//     head = insertEnd(head, -26);
+//     head = insertEnd(head, 74);
+//     head = insertEnd(head, 56);
+//     displayLL(head);
+//     node *nHead = loopLL(head);
+//     displayLoop(nHead);
+//     // cout << detectLoop(head) << endl;        //by method 1
+//     // cout << detectLoopHash(head) << endl; // by method 2 hashing
+//     floydAlgo(head) ? cout << "LOOP EXIST !" << endl : cout << "NO LOOP EXIST!" << endl; // method 3 using slow and fast pointer .
+//     // head = removeLoop(head); // remove loop
+//     // displayLL(head);
+//     cout << "Length of loop is : " << lengthOfLoop(head) << endl;
+//     node *loopHead = headOfLoop(head);
+//     displayLoop(loopHead);
+//     return 0;
+// }
+
+// q trick ques about deleting any random node without knowing head
+//************important interview ques******************
+// #include <bits/stdc++.h>
+// using namespace std;
+// typedef struct linkedList
+// {
+//     int data;
+//     linkedList *next;
+//     linkedList(int data)
+//     {
+//         this->data = data;
+//         this->next = NULL;
+//     }
+// } node;
+// node *insertEnd(node *head, int data)
+// {
+//     node *dummy = new node(data);
+//     node *ptr = head;
+//     while (ptr->next != NULL)
+//     {
+//         ptr = ptr->next;
+//     }
+//     ptr->next = dummy;
+//     return head;
+// }
+// void displayLL(node *head)
+// {
+//     node *ptr = head;
+//     while (ptr != NULL)
+//     {
+//         cout << ptr->data << " ";
+//         ptr = ptr->next;
+//     }
+//     cout << endl;
+// }
+// void deletRandomNode(node *ptr)
+// {
+//     node *temp = (ptr)->next;
+//     (ptr)->data = (ptr)->next->data;
+//     (ptr)->next = (ptr)->next->next;
+//     delete temp;
+// }
+// int main()
+// {
+//     node *head = new node(89);
+//     head = insertEnd(head, 63);
+//     head = insertEnd(head, -9);
+//     head = insertEnd(head, -76);
+//     head = insertEnd(head, -26);
+//     head = insertEnd(head, 74);
+//     head = insertEnd(head, 56);
+//     displayLL(head);
+//     deletRandomNode(head->next->next->next);
+//     displayLL(head);
+//     return 0;
+// }
+
+// q segregate even and odd in order
+// SOL- IN ONE TRAVERSAL OF LINKED LIST
+//************important interview ques******************
 #include <bits/stdc++.h>
 using namespace std;
 typedef struct linkedList
 {
     int data;
     linkedList *next;
-    // defining constructor in struct is allowed .
     linkedList(int data)
     {
         this->data = data;
@@ -769,15 +1132,16 @@ node *insertEnd(node *head, int data)
 {
     node *dummy = new node(data);
     node *ptr = head;
-    if (head == NULL)
-        return dummy;
     while (ptr->next != NULL)
+    {
         ptr = ptr->next;
+    }
     ptr->next = dummy;
     return head;
 }
-void llTraversal(node *ptr)
+void displayLL(node *head)
 {
+    node *ptr = head;
     while (ptr != NULL)
     {
         cout << ptr->data << " ";
@@ -785,67 +1149,127 @@ void llTraversal(node *ptr)
     }
     cout << endl;
 }
-node *duplicateRemove(node *ptr)
+node *sortEvenOdd(node *head)
 {
-    node *start = ptr;
-    while (ptr->next != NULL && ptr != NULL)
+    node *eS = NULL;
+    node *eE = NULL;
+    node *oS = NULL;
+    node *oE = NULL;
+    for (node *curr = head; curr != NULL; curr = curr->next)
     {
-        if (ptr->data == ptr->next->data)
+        int x = curr->data;
+        if (x % 2 != 0)
         {
-            node *temp = ptr->next;
-            ptr->next = ptr->next->next;
-            delete temp;
+            if (oS == NULL)
+            {
+                oS = curr;
+                oE = oS;
+            }
+            else
+            {
+                oE->next = curr;
+                oE = oE->next;
+            }
         }
         else
-            ptr = ptr->next;
+        {
+            if (eS == NULL)
+            {
+                eS = curr;
+                eE = eS;
+            }
+            else
+            {
+                eE->next = curr;
+                eE = eE->next;
+            }
+        }
     }
-    return start;
+    eE->next = oS;
+    oE->next = NULL;
+    return eS;
 }
-//thoda complicated hai smjhna ...-------------------------try krna smjhna ek or baar
-node *reverseK(node *head, node *pres, int k)
+int intersection(node *head1, node *head2)
 {
-    node *curr = head;
-
-    if (curr == NULL)
-        return NULL;
-    int i = 0;
-    node *prev = NULL;
-    node *Next = NULL;
-    while (curr != NULL && i < k)
+    node *ptr1 = head1;
+    node *ptr2 = head2;
+    int count1 = 0, count2 = 0;
+    while (ptr1 != NULL)
     {
-        Next = curr->next;
-        curr->next = prev;
+        count1++;
+        ptr1 = ptr1->next;
+    }
+    while (ptr2 != NULL)
+    {
+        count2++;
+        ptr2 = ptr2->next;
+    }
+    int diff = abs(count1 - count2);
+    ptr1 = head1; // assuming head1 has more elements
+    ptr2 = head2;
+    for (int i = 0; i < diff; i++)
+        ptr1 = ptr1->next;
+    while (ptr1 != NULL && ptr2 != NULL)
+    {
+        if (ptr1 == ptr2)
+            return ptr1->data;
+        ptr1 = ptr1->next;
+        ptr2 = ptr2->next;
+    }
+    return -1;
+}
+node *pairWiseSwap(node *head)
+{
+    node *prev = head;
+    node *curr = head->next->next;
+    head = head->next;
+    head->next = prev;
+    while (curr != NULL && curr->next != NULL)
+    {
+        prev->next = curr->next;
         prev = curr;
-        curr = Next;
-        i++;
+        node *temp = curr->next->next;
+        curr->next->next = curr;
+        curr = temp;
     }
-    if (Next != NULL)
-    {
-        node *link = reverseK(curr, prev, k);
-        head->next = link;
-    }
-    return prev;
+    prev->next = curr;
+    return head;
 }
 int main()
 {
-    node *head = new node(90);
-    // head = insertEnd(head, 90);
-    // head = insertEnd(head, 90);
-    head = insertEnd(head, 751);
-    head = insertEnd(head, 919);
-    // head = insertEnd(head, 919);
-    // head = insertEnd(head, 919);
-    // head = insertEnd(head, 1000);
-    // head = insertEnd(head, 1000);
-    head = insertEnd(head, 1000);
-    head = insertEnd(head, 1020);
-    // head = insertEnd(head, 1020);
-    // head = insertEnd(head, 1020);
-    // head = insertEnd(head, 1020);
-    llTraversal(head);
-    // head = duplicateRemove(head);
-    // llTraversal(head);
-    head = reverseK(head, NULL, 3);
-    llTraversal(head);
+    node *head = new node(89);
+
+    // node *head2 = new node(69);
+
+    // head2 = insertEnd(head2, 14);
+    // head2 = insertEnd(head2, -76);
+    head = insertEnd(head, 74);
+    head = insertEnd(head, 63);
+    // node *ptr = head;
+    // while (ptr->next != NULL)
+    // {
+    //     ptr = ptr->next;
+    // }
+    head = insertEnd(head, -76);
+    head = insertEnd(head, -26);
+    // head2->next = ptr;
+    head = insertEnd(head, -9);
+    head = insertEnd(head, 56);
+    head = insertEnd(head, -13);
+    displayLL(head);
+    // displayLL(head2);
+
+    // ------even order sorting controller
+    //  head = sortEvenOdd(head);
+    //  displayLL(head);
+
+    // ----find intersection of LL
+    // cout << intersection(head, head2) << endl;
+    // displayLL(head);
+
+    //------pair wise swapping controller
+    // method 2  - - instead of swaping pointers swap data
+    //  head = pairWiseSwap(head);
+    //  displayLL(head);
     return 0;
 }
