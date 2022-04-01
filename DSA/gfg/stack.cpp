@@ -485,3 +485,21 @@
 //     cout << "Min = " << s1.getMin() << endl;
 //     return 0;
 // }
+
+// q-infix to postfix
+#include <bits/stdc++.h>
+using namespace std;
+string postfix(string str)
+{
+    stack<char> s;
+    for (char i : str)
+    {
+        if (i == '+' && s.top() != '-')
+    }
+}
+int main()
+{
+    string str = "a+b*c/d";
+    cout << postfix(str) << endl;
+    return 0;
+}
