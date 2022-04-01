@@ -494,7 +494,7 @@ string postfix(string str)
     stack<char> s;
     for (char i : str)
     {
-        if (i == '+' && s.top() != '-')
+        if (i == '+' && s.top() != '-'){}
     }
 }
 int main()
