@@ -487,19 +487,79 @@
 // }
 
 // q-infix to postfix
-#include <bits/stdc++.h>
-using namespace std;
-string postfix(string str)
-{
-    stack<char> s;
-    for (char i : str)
-    {
-        if (i == '+' && s.top() != '-'){}
-    }
-}
-int main()
-{
-    string str = "a+b*c/d";
-    cout << postfix(str) << endl;
-    return 0;
-}
+// #include <bits/stdc++.h>
+// using namespace std;
+// int isOperator(char ch)
+// {
+//     if (ch == '+' || ch == '-' || ch == '*' || ch == '/')
+//         return 1;
+//     else if (ch == '(')
+//         return 2;
+//     else if (ch == ')')
+//         return 3;
+//     return 0; // for alphabets
+// }
+// int precedence(char ch)
+// {
+//     if (ch == '+' || ch == '-')
+//         return 1;
+//     if (ch == '*' || ch == '/')
+//         return 2;
+//     return 0;
+// }
+// void postfix(string str)
+// {
+//     // note:for prefix solution reverse the string and perform same operations and result would be reverse of that output
+//     string postFix = "";
+//     char temp;
+//     stack<char> s;
+//     for (char i : str)
+//     {
+//         if (isOperator(i) == 0)
+//         {
+//             postFix.push_back(i);
+//         }
+//         else if (isOperator(i) == 2)
+//         {
+//             s.push(i);
+//         }
+//         else if (isOperator(i) == 3)
+//         {
+//             while (!s.empty() && s.top() != '(')
+//             {
+//                 temp = s.top();
+//                 postFix.push_back(temp);
+//                 s.pop();
+//             }
+//             s.pop();
+//         }
+//         else
+//         {
+//             if (!s.empty() && precedence(i) > precedence(s.top()))
+//                 s.push(i);
+//             else
+//             {
+//                 while (!s.empty() && precedence(i) <= precedence(s.top()))
+//                 {
+//                     temp = s.top();
+//                     postFix.push_back(temp);
+//                     s.pop();
+//                 }
+//                 s.push(i);
+//             }
+//         }
+//     }
+//     while (!s.empty())
+//     {
+//         temp = s.top();
+//         postFix.push_back(temp);
+//         s.pop();
+//     }
+//     cout << postFix << endl;
+// }
+// int main()
+// {
+//     string str = "(a+b)/(c-d)*e";
+//     postfix(str);
+//     return 0;
+// }
