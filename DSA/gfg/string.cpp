@@ -238,47 +238,236 @@
 //     return 0;
 // }
 
-// ques reverse words in string
+//-- ques reverse words in string
+// #include <bits/stdc++.h>
+// using namespace std;
+// void reverseWords(string str)
+// {
+//     int start = 0, end;
+//     int n = str.length();
+//     //----reverse all words except last one
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (str[i] == ' ')
+//         {
+//             end = i - 1;
+//             while (start < end && end < n)
+//             {
+//                 swap(str[start], str[end]);
+//                 start++;
+//                 end--;
+//             }
+//             start = i + 1;
+//         }
+//     }
+//     //----reverse last word
+//     end = n - 1;
+//     while (start < end)
+//     {
+//         swap(str[start], str[end]);
+//         start++;
+//         end--;
+//     }
+//     start = 0;
+//     end = n - 1;
+//     // ---reverse whole string
+//     while (start < end)
+//     {
+//         swap(str[start], str[end]);
+//         end--;
+//         start++;
+//     }
+//     cout << str << endl;
+// }
+// int main()
+// {
+//     string str = "i love programming";
+//     reverseWords(str);
+//     return 0;
+// }
+
+// test ques - reverse k elements in array
+// #include <bits/stdc++.h>
+// using namespace std;
+// void reverseK(int arr[], int n, int k)
+// {
+//     int start, end;
+//     for (int i = 0; i < n; i += k)
+//     {
+//         start = i;
+//         end = start + k - 1;
+//         while (start < end && end < n)
+//         {
+//             swap(arr[start], arr[end]);
+//             start++;
+//             end--;
+//         }
+//         if (end >= n)
+//         {
+//             end = n - 1;
+//             while (start < end)
+//             {
+//                 swap(arr[start], arr[end]);
+//                 start++;
+//                 end--;
+//             }
+//         }
+//     }
+//     for (int i = 0; i < n; i++)
+//         cout << arr[i] << " ";
+// }
+// int main()
+// {
+//     int arr[] = {7, 12, 3, 8, 16, 7, 9, 81};
+//     reverseK(arr, 8, 4);
+
+//     return 0;
+// }
+
+// ques- check pattern in string
+// #include <bits/stdc++.h>
+// using namespace std;
+// void checkPattern(string str1, string str2)
+// {
+//     int n1 = str1.length();
+//     int n2 = str2.length();
+//     // stack<int> s;
+//     // int j = n2 - 1, index;
+//     // for (int i = n1 - 1; i >= 0; i--)
+//     // {
+//     //     if (str1[i] != str2[j])
+//     //         j = n2 - 1;
+//     //     if (str1[i] == str2[j])
+//     //     {
+//     //         index = i;
+//     //         j--;
+//     //     }
+//     //     if (j < 0)
+//     //     {
+//     //         s.push(index);
+//     //     }
+//     // }
+//     // if (s.empty())
+//     //     cout << "not present !";
+//     // else
+//     // {
+//     //     while (!s.empty())
+//     //     {
+//     //         cout << s.top() << endl;
+//     //         s.pop();
+//     //     }
+//     // }
+//     //---------mtd - -rabin karp algorithm -----------pending hai yeh and iske aage ke 2 algo
+//     int hashI = 0, hashJ = 0, j = 0;
+//     for (int j = 0; j < n2; j++)
+//     {
+//         hashJ += str2[j];
+//     }
+//     for (int i = 1; i < n2; i++)
+//     {
+//         hashI += str1[i];
+//     }
+//     int index = 0;
+//     for (int i = 0; i < n1 - n2 + 1; i++)
+//     {
+//         hashI += str1[i + n2];
+//         cout << hashI << " " << hashJ << endl;
+//         if (hashI == hashJ)
+//         {
+//             cout << index << endl;
+//         }
+//         j = 0;
+//         hashI -= str1[i];
+//         // index++;
+//     }
+// }
+// int main()
+// {
+//     string str1 = "geeksforgeeks";
+//     string str2 = "eks";
+//     checkPattern(str1, str2);
+//     return 0;
+// }
+
+// ques check if given string can obtained by rotating other string
+// #include <bits/stdc++.h>
+// using namespace std;
+// bool checkRotation(string str1, string str2)
+// {
+//     //--------ghatiya approach
+//     // unordered_map<char, int> m;
+//     // int n1 = str1.length();
+//     // for (int i = 0; i < n1; i++)
+//     // {
+//     //     m.insert({str1[i], i});
+//     // }
+//     // auto index = m.find(str2[0]);
+//     // for (int i = 1; i < n1; i++)
+//     // {
+//     //     auto itr = m.find(str2[i]);
+//     //     if (abs(itr->second - i) != index->second)
+//     //         return false;
+//     // }
+//     // return true;
+//     if (str1.length() != str2.length())
+//         return false;
+//     return ((str1 + str1).find(str2) != string::npos);
+// }
+// int main()
+// {
+//     string str1 = "abcd";
+//     string str2 = "bcda";
+//     cout << checkRotation(str1, str2) << endl;
+//     return 0;
+// }
+
+// ques- check if anangram is present in a string
+//  sol- sum of characters is const
 #include <bits/stdc++.h>
 using namespace std;
-void reverseWords(string str)
+bool checkAnagram(string str1, string str2)
 {
-    string temp;
-    int n = str.length();
-    vector<int> space;
-    space.push_back(n - 1);
-    for (int i = n - 1; i >= 0; i--)
+    int n1 = str1.length();
+    int n2 = str2.length();
+    // int hashJ = 0, hashI = 0;
+    // for (int i = 0; i < n2; i++)
+    //     hashJ += str2[i];
+    // for (int i = 0; i < n2; i++)
+    //     hashI += str1[i];
+    // for (int i = 0; i < n1 - n2 + 1; i++)
+    // {
+    //     cout << hashI << " " << hashJ << endl;
+    //     if (hashI == hashJ)
+    //     {
+    //         return true;
+    //     }
+    //     hashI -= str1[i];
+    //     hashI += str1[i + n2];
+    // }
+    // return false;
+
+    unordered_set<char> s;
+    for (int i = 0; i < n2; i++)
+        s.insert(str2[i]);
+    int count = 1;
+    bool flag = false;
+    for (int i = 0; i < n1; i++)
     {
-        if (str[i] == ' ')
+        if (s.find(str1[i]) != s.end())
         {
-            space.push_back(i);
+            if (flag == true)
+                count++;
+            flag = true;
         }
+        else
+            flag = false;
     }
-    int k = 0;
-    int i;
-    while (k + 1 < space.size())
-    {
-        i = space[k + 1];
-        while (i < space[k])
-        {
-            temp += str[i + 1];
-            i++;
-        }
-        temp += ' ';
-        k++;
-    }
-    i = 0;
-    while (i < space[k])
-    {
-        temp += str[i];
-        i++;
-    }
-    str = temp;
-    cout << str << endl;
+    return (count == n2);
 }
 int main()
 {
-    string str = "this is my world";
-    reverseWords(str);
+    string str1 = "geeksforgeeks";
+    string str2 = "keeg";
+    cout << checkAnagram(str1, str2) << endl;
     return 0;
 }
