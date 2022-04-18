@@ -423,51 +423,51 @@
 
 // ques- check if anangram is present in a string
 //  sol- sum of characters is const
-#include <bits/stdc++.h>
-using namespace std;
-bool checkAnagram(string str1, string str2)
-{
-    int n1 = str1.length();
-    int n2 = str2.length();
-    // int hashJ = 0, hashI = 0;
-    // for (int i = 0; i < n2; i++)
-    //     hashJ += str2[i];
-    // for (int i = 0; i < n2; i++)
-    //     hashI += str1[i];
-    // for (int i = 0; i < n1 - n2 + 1; i++)
-    // {
-    //     cout << hashI << " " << hashJ << endl;
-    //     if (hashI == hashJ)
-    //     {
-    //         return true;
-    //     }
-    //     hashI -= str1[i];
-    //     hashI += str1[i + n2];
-    // }
-    // return false;
+// #include <bits/stdc++.h>
+// using namespace std;
+// bool checkAnagram(string str1, string str2)
+// {
+//     int n1 = str1.length();
+//     int n2 = str2.length();
+//     // int hashJ = 0, hashI = 0;
+//     // for (int i = 0; i < n2; i++)
+//     //     hashJ += str2[i];
+//     // for (int i = 0; i < n2; i++)
+//     //     hashI += str1[i];
+//     // for (int i = 0; i < n1 - n2 + 1; i++)
+//     // {
+//     //     cout << hashI << " " << hashJ << endl;
+//     //     if (hashI == hashJ)
+//     //     {
+//     //         return true;
+//     //     }
+//     //     hashI -= str1[i];
+//     //     hashI += str1[i + n2];
+//     // }
+//     // return false;
 
-    unordered_set<char> s;
-    for (int i = 0; i < n2; i++)
-        s.insert(str2[i]);
-    int count = 1;
-    bool flag = false;
-    for (int i = 0; i < n1; i++)
-    {
-        if (s.find(str1[i]) != s.end())
-        {
-            if (flag == true)
-                count++;
-            flag = true;
-        }
-        else
-            flag = false;
-    }
-    return (count == n2);
-}
-int main()
-{
-    string str1 = "geeksforgeeks";
-    string str2 = "keeg";
-    cout << checkAnagram(str1, str2) << endl;
-    return 0;
-}
+//     unordered_set<char> s;
+//     for (int i = 0; i < n2; i++)
+//         s.insert(str2[i]);
+//     int count = 1;
+//     bool flag = false;
+//     for (int i = 0; i < n1; i++)
+//     {
+//         if (s.find(str1[i]) != s.end())
+//         {
+//             if (flag == true)
+//                 count++;
+//             flag = true;
+//         }
+//         else
+//             flag = false;
+//     }
+//     return (count == n2);
+// }
+// int main()
+// {
+//     string str1 = "geeksforgeeks";
+//     string str2 = "keeg";
+//     cout << checkAnagram(str1, str2) << endl;
+//     return 0;
+// }
