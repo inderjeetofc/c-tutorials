@@ -345,54 +345,76 @@
 // }
 
 // ques - reverse a queue
-#include <bits/stdc++.h>
-using namespace std;
-queue<int> reverseQ(queue<int> q)
-{
-    stack<int> s;
-    while (!q.empty())
-    {
-        s.push(q.front());
-        q.pop();
-    }
-    while (!s.empty())
-    {
-        q.push(s.top());
-        s.pop();
-    }
-    return q;
-}
-// recursive solution
-void reverseRecursively(queue<int> &q)
-{
-    if (q.empty())
-        return;
-    int temp = q.front();
-    q.pop();
-    reverseRecursively(q);
-    q.push(temp);
-}
-void display(queue<int> q)
-{
-    while (!q.empty())
-    {
-        cout << q.front() << " ";
-        q.pop();
-    }
-    cout << endl;
-}
-int main()
-{
-    queue<int> q;
-    q.push(15);
-    q.push(5);
-    q.push(10);
-    q.push(9);
-    q.push(2);
-    display(q);
-    // q = reverseQ(q);
-    reverseRecursively(q);
-    cout << "REVERSED !" << endl;
-    display(q);
-    return 0;
-}
+// #include <bits/stdc++.h>
+// using namespace std;
+// queue<int> reverseQ(queue<int> q)
+// {
+//     stack<int> s;
+//     while (!q.empty())
+//     {
+//         s.push(q.front());
+//         q.pop();
+//     }
+//     while (!s.empty())
+//     {
+//         q.push(s.top());
+//         s.pop();
+//     }
+//     return q;
+// }
+// // recursive solution
+// void reverseRecursively(queue<int> &q)
+// {
+//     if (q.empty())
+//         return;
+//     int temp = q.front();
+//     q.pop();
+//     reverseRecursively(q);
+//     q.push(temp);
+// }
+// void display(queue<int> q)
+// {
+//     while (!q.empty())
+//     {
+//         cout << q.front() << " ";
+//         q.pop();
+//     }
+//     cout << endl;
+// }
+// int main()
+// {
+//     queue<int> q;
+//     q.push(15);
+//     q.push(5);
+//     q.push(10);
+//     q.push(9);
+//     q.push(2);
+//     display(q);
+//     // q = reverseQ(q);
+//     reverseRecursively(q);
+//     cout << "REVERSED !" << endl;
+//     display(q);
+//     return 0;
+// }
+
+// ques - print numbers with given digits using queue
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int main()
+// {
+//     queue<string> q;
+//     q.push("5");
+//     q.push("6");
+//     int count = 0;
+//     while (count < 10)
+//     {
+//         string curr = q.front();
+//         q.pop();
+//         cout << curr << " ";
+//         q.push(curr + "5");
+//         q.push(curr + "6");
+//         count++;
+//     }
+//     return 0;
+// }
