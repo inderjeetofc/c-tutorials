@@ -278,3 +278,23 @@
 //     maxSubArray(arr, 5, 3);
 //     return 0;
 // }
+
+// ques first circular trip prob
+#include <bits/stdc++.h>
+using namespace std;
+int firstCircularTrip(int arr1[], int arr2[], int n)
+{
+    queue<int> q;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr1[i] - arr2[i] >= 0)
+            q.push(i);
+    }
+}
+int main()
+{
+    int arr1[] = {4, 8, 7, 4};
+    int arr2[] = {6, 5, 3, 5};
+    cout << firstCircularTrip(arr1, arr2, 4);
+    return 0;
+}
