@@ -124,31 +124,29 @@ bool checkBST(treeDS *root)
     }
     return checkBST(root->right);
 }
+//baadme kariyo bore ho rha filhal
 treeDS *swapTwoNodesBST(treeDS *root)
 {
-    static int prevRoot = INT_MIN;
+    // static int prevRoot = INT_MIN;
     static treeDS *ptr = NULL;
     if (root == NULL)
         return root;
-    if (!checkBST(root->left))
-    {
-        return root;
-    }
-    if (prevRoot > root->data)
+    treeDS *prevRoot = swapTwoNodesBST(root->left);
+    if (prevRoot != NULL && prevRoot->data > root->data)
     {
         if (ptr == NULL)
         {
-            ptr = root;
+            ptr = prevRoot;
         }
         else
         {
             int tempVal = ptr->data;
-            ptr->data = root->data;
-            root->data = tempVal;
+            ptr->data = prevRoot->data;
+            prevRoot->data = tempVal;
         }
     }
-    prevRoot = root->data;
-    return checkBST(root->right);
+    swapTwoNodesBST(root->right);
+    return root;
 }
 int main()
 {
@@ -183,11 +181,12 @@ int main()
     // root = insert(root, 20);
 
     treeDS *root = new treeDS(20);
-    root->left = new treeDS(8);
-    root->right = new treeDS(30);
-    root->right->left = new treeDS(18);
-    root->right->right = new treeDS(35);
-    root->left->right = new treeDS(8);
+    root->left = new treeDS(60);
+    root->right = new treeDS(80);
+    root->right->left = new treeDS(8);
+    root->right->right = new treeDS(100);
+    root->left->left = new treeDS(4);
+    root->left->right = new treeDS(10);
 
     inorder(root);
     cout << endl;
@@ -202,5 +201,8 @@ int main()
     findCelingOnLeftSide(arr, 8);
     cout << kSmallestELement(arr, 8, 7) << endl; // big O(logN) solution
     cout << checkBST(root) << endl;
+    root = swapTwoNodesBST(root);
+    inorder(root);
+    cout << endl;
     return 0;
 }
