@@ -264,9 +264,10 @@ void printGraph(vector<int> v[], int n)
     }
 }
 // topological sorting - print in order of dependency - only for acyclic graph
-//kahn's algorithm 
+// kahn's algorithm
 void topologicalSorting(vector<int> v[], int n)
 {
+    // note  kahn's algo only works for acyclic graph
     queue<int> q;
     int inDeg[n];
     for (int i = 0; i < n; i++)
@@ -296,17 +297,110 @@ void topologicalSorting(vector<int> v[], int n)
         q.pop();
     }
 }
+// note  kahn's algo only works for acyclic graph
+//  for cyclic graph we need to add a count variable
+//  - -------the count variable should be equal to vertices when queue is empty if not then there is cycle in graph
+bool topologicalCycleDetect(vector<int> v[], int n)
+{
+    queue<int> q;
+    int inDeg[n];
+    int count = 0;
+    for (int i = 0; i < n; i++)
+        inDeg[i] = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (auto j : v[i])
+            inDeg[j]++;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        if (inDeg[i] == 0)
+        {
+            q.push(i);
+        }
+    }
+    while (!q.empty())
+    {
+        int curr = q.front();
+        for (auto i : v[curr])
+        {
+            inDeg[i]--;
+            if (inDeg[i] == 0)
+                q.push(i);
+        }
+        q.pop();
+        count++;
+    }
+    return (count != n);
+}
+//------globally defined for follwing topological DFS
+// bool visited[5];
+// stack<int> s;
+// void topologicalSortDFS(vector<int> v[], int root)
+// {
+//     visited[root] = 1;
+//     for (auto i : v[root])
+//     {
+//         if (!visited[i])
+//             topologicalSortDFS(v, i);
+//     }
+//     s.push(root);
+//     return;
+// }
+// void DFSvisited(vector<int> v[], int n)
+// {
+//     for (int i = 0; i < n; i++)
+//         visited[i] = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (!visited[i])
+//             topologicalSortDFS(v, i);
+//     }
+//     while (!s.empty())
+//     {
+//         cout << s.top() << " ";
+//         s.pop();
+//     }
+// }
+void shortestPathDAGWeighted(vector<int> v[], int n, int source, int count[], int weight[])
+{
+    for (int i : v[source])
+    {
+        count[i] = min(count[i], weight[i]);
+        shortestPathDAGWeighted(v, i, n, count, weight);
+    }
+}
 int main()
 {
     int n = 5;
     vector<int> v[n];
-    addEdgeDirected(v, 0, 2);
-    addEdgeDirected(v, 0, 3);
-    addEdgeDirected(v, 1, 3);
-    addEdgeDirected(v, 1, 4);
+    // cyclic directed graph
+    // addEdgeDirected(v, 0, 2);
+    // addEdgeDirected(v, 0, 3);
+    // addEdgeDirected(v, 1, 3);
     // addEdgeDirected(v, 3, 4);
-    // addEdgeDirected(v, 3, 5);
+    // addEdgeDirected(v, 4, 1);
+    // graph for topological DFS
+    addEdgeDirected(v, 0, 1);
+    addEdgeDirected(v, 1, 3);
+    addEdgeDirected(v, 2, 3);
+    addEdgeDirected(v, 2, 4);
+    addEdgeDirected(v, 3, 4);
     printGraph(v, n);
-    topologicalSorting(v, n);
+    // topologicalSorting(v, n);
+    cout << "detect cycle with kahn's algo : - " << topologicalCycleDetect(v, n);
+    // topological dfs
+    // DFSvisited(v, n);
+    int count[n];
+    for (int i = 0; i < n; i++)
+        count[i] = INT_MAX;
+    // enter weights
+    cout << "enter weight with source<<ednl" << endl;
+    int weight[n];
+    for (int i = 0; i < n; i++)
+    {
+        cin >> weight[i];
+    }
+    shortestPathDAGWeighted(v, n, 0, count, weight);
     return 0;
 }
