@@ -362,12 +362,107 @@ bool topologicalCycleDetect(vector<int> v[], int n)
 //         s.pop();
 //     }
 // }
-void shortestPathDAGWeighted(vector<int> v[], int n, int source, int count[], int weight[])
+
+void shortestPathDAGWeighted(int weightGraph[4][4], int source)
 {
-    for (int i : v[source])
+    int n = 4;
+    queue<int> q;
+    int inDeg[n];
+    int count[n];
+    for (int i = 0; i < n; i++)
     {
-        count[i] = min(count[i], weight[i]);
-        shortestPathDAGWeighted(v, i, n, count, weight);
+        inDeg[i] = 0;
+        count[i] = INT_MAX;
+    }
+    count[source] = 0;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (weightGraph[i][j] > 0)
+                inDeg[j]++;
+        }
+    }
+    q.push(source);
+    while (!q.empty())
+    {
+        int curr = q.front();
+        for (int i = 0; i < n; i++)
+        {
+            if (weightGraph[curr][i] > 0)
+            {
+                inDeg[i]--;
+                if (inDeg[i] == 0)
+                    q.push(i);
+                // calculate min distance
+                count[i] = min(count[i], count[curr] + weightGraph[curr][i]);
+            }
+        }
+        q.pop();
+    }
+    // algo for shortest dist weighted
+    for (int i = 0; i < n; i++)
+    {
+        cout << count[i] << " ";
+    }
+}
+// ---------pending...........firse krna wid prims algo
+int minSpanningTree(int weightGraph[5][5], int source)
+{
+    int n = 5;
+    vector<int> v;
+    v.push_back(source);
+    bool visited[n];
+    for (int i = 0; i < n; i++)
+        visited[i] = 0;
+    visited[source] = 1;
+    int minLenI = 1;
+    int minLen = 0;
+    int edges = n - 1;
+    int flag = 0;
+    while (edges > 0)
+    {
+        // v.push_back(source);
+        for (auto i : v)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (!visited[j] && weightGraph[i][j] > 0)
+                {
+                    if (flag == 0)
+                    {
+                        source = i;
+                        minLenI = j;
+                        flag = 1;
+                    }
+                    if (weightGraph[i][j] <= weightGraph[source][minLenI])
+                    {
+                        source = i;
+                        minLenI = j;
+                    }
+                }
+            }
+        }
+        visited[minLenI] = 1;
+        minLen = minLen + weightGraph[source][minLenI];
+        v.push_back(minLenI);
+        // source = minLenI;
+        flag = 0;
+        edges--;
+    }
+    return minLen;
+}
+// algo for shortest distance
+void dijkstraAlgo(vector<int> graph[], int n, int source)
+{
+    vector<int> dist(n, INT_MAX);
+    vector<bool> visited(n, 0);
+    for (int i = 0; i < n; i++)
+    {
+        if (!visited[i] && graph[source][i] != 0 && graph[source][i] < dist[i])
+        {
+            source = i;
+        }
     }
 }
 int main()
@@ -386,21 +481,29 @@ int main()
     addEdgeDirected(v, 2, 3);
     addEdgeDirected(v, 2, 4);
     addEdgeDirected(v, 3, 4);
-    printGraph(v, n);
+    // printGraph(v, n);
     // topologicalSorting(v, n);
-    cout << "detect cycle with kahn's algo : - " << topologicalCycleDetect(v, n);
+    // cout << "detect cycle with kahn's algo : - " << topologicalCycleDetect(v, n);
     // topological dfs
     // DFSvisited(v, n);
-    int count[n];
-    for (int i = 0; i < n; i++)
-        count[i] = INT_MAX;
-    // enter weights
-    cout << "enter weight with source<<ednl" << endl;
-    int weight[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> weight[i];
-    }
-    shortestPathDAGWeighted(v, n, 0, count, weight);
+    //  weighted graph
+    // int weightGraph[4][4] = {{0, 1, 0, 0},
+    //                          {0, 0, 3, 2},
+    //                          {0, 0, 0, 4},
+    //                          {0, 0, 0, 0}};
+    // int weightGraph[6][6] = {{0, 2, 0, 0, 1, 0},
+    //                          {0, 0, 3, 0, 0, 0},
+    //                          {0, 0, 0, 6, 0, 0},
+    //                          {0, 0, 0, 0, 0, 0},
+    //                          {0, 0, 2, 0, 0, 4},
+    //                          {0, 0, 0, 1, 0, 0}};
+    // shortestPathDAGWeighted(weightGraph, 1);
+    // graph for min spanning tree
+    int weightGraph[5][5] = {{0, 2, 0, 6, 0},
+                             {2, 0, 3, 8, 5},
+                             {0, 3, 0, 0, 7},
+                             {6, 8, 0, 0, 9},
+                             {0, 5, 7, 9, 0}};
+    cout << "Min span is : - " << minSpanningTree(weightGraph, 0) << endl;
     return 0;
 }
