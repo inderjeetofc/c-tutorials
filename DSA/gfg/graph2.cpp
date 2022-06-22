@@ -180,18 +180,21 @@ int minSpanningTree(vector<int> v[], bool visited[], int weight[][5], int root, 
     queue<int> q;
     q.push(root);
     int check[n];
+    int flag = false;
     for (int i = 0; i < n; i++)
         check[i] = INT_MAX;
     while (!q.empty())
     {
         int curr = q.front();
         q.pop();
+        minLen += check[curr];
         int minIn;
         int minWt = INT_MAX;
         for (auto x : v[curr])
         {
             if (!visited[x])
             {
+                flag = true;
                 if (check[x] > weight[curr][x])
                     check[x] = weight[curr][x];
                 if (minWt > check[x])
@@ -202,18 +205,60 @@ int minSpanningTree(vector<int> v[], bool visited[], int weight[][5], int root, 
             }
         }
         cout << minIn << endl;
-        if (!visited[minIn])
+        // if (!visited[minIn])
+        // {
+        // minLen += minWt;
+        if (flag)
         {
             visited[minIn] = true;
             q.push(minIn);
             minWt = INT_MAX;
         }
-        if (minWt != INT_MAX)
-            minLen += minWt;
-        else
-            minLen += check[minIn];
+        flag = false;
+        // }
+        // if (minWt != INT_MAX)
+        // else
+        // minLen += check[minIn];
     }
     return minLen;
+}
+int minSpanningTreeDijkstra(vector<int> v[], int n, bool visited[], int root, int distance[], int weight[][4])
+{
+    queue<int> q;
+    q.push(root);
+    int minLen = 0;
+    visited[root] = true;
+    int minWt;
+    if (distance[root] == INT_MAX)
+    {
+        distance[root] = 0;
+        minWt = INT_MAX;
+    }
+    while (!q.empty())
+    {
+        int curr = q.front();
+        int minIn;
+        q.pop();
+        minLen += distance[curr];
+        for (auto x : v[curr])
+        {
+            if (!visited[x])
+            {
+                visited[x] = true;
+                if (distance[x] > distance[curr] + weight[curr][x])
+                    distance[x] = distance[curr] + weight[curr][x];
+                if (minWt > distance[x])
+                {
+                    minWt = distance[x];
+                    minIn = x;
+                }
+                q.push(x);
+            }
+            else if (x != parent[curr])
+                return true;
+        }
+    }
+    return false;
 }
 // visited array create function
 // void createVisited(vector<int> v[], int n)//defination for all other cases
@@ -246,9 +291,9 @@ void createVisited(vector<int> v[], int n, int weight[][5]) // defination for mi
             //         // break;
             //         //----to detect cycle DFS directed--
             //         // cout << "the graph has cycle : " << detectCycleDirected(v, visited, i, parent) << endl;
-            //         //-----min spanning tree call
-            minLen = minLen + minSpanningTree(v, visited, weight, i, n, 0);
-            cout << "Min length of spanning tree is - " << minLen << endl;
+            //         //-----min spanning tree call prims algo ---pending
+            // minLen = minLen + minSpanningTree(v, visited, weight, i, n, 0);
+            // cout << "Min length of spanning tree is - " << minLen << endl;
         }
     }
     // cout << "Number of connected graphs are - " << count << endl;

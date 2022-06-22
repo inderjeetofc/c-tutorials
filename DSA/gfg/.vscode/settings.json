@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "*.pub": "bat",
+        "ostream": "cpp"
+    }
+}
