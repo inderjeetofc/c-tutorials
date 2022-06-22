@@ -423,49 +423,49 @@
 
 // max sum of consecutive k elements
 //  sol - sliding window technique
-// #include <bits/stdc++.h>
-// using namespace std;
-// int maxSumFind(int arr[], int n, int k)
-// {
-//     int a = 0, sum = 0, maxSum = INT_MIN;
-//     for (int i = 0; i < n; i++)
-//     {
-//         if (i >= k)
-//         {
-//             maxSum = max(sum, maxSum);
-//             sum += arr[i] - arr[i - k];
-//             // sum -= arr[a];
-//             // a++;
-//         }
-//         else
-//             sum += arr[i];
-//     }
-//     maxSum = max(sum, maxSum);
-//     return maxSum;
-// }
-// int main()
-// {
-//     int arr[] = {1, 8, 30, -5, 20};
-//     cout << maxSumFind(arr, 5, 2) << endl;
-//     return 0;
-// }
+#include <bits/stdc++.h>
+using namespace std;
+int maxSumFind(int arr[], int n, int k)
+{
+    int a = 0, sum = 0, maxSum = INT_MIN;
+    for (int i = 0; i < n; i++)
+    {
+        if (i >= k)
+        {
+            maxSum = max(sum, maxSum);
+            sum += arr[i] - arr[i - k];
+            // sum -= arr[a];
+            // a++;
+        }
+        else
+            sum += arr[i];
+    }
+    maxSum = max(sum, maxSum);
+    return maxSum;
+}
+int main()
+{
+    int arr[] = {1, 8, 30, -5, 20};
+    cout << maxSumFind(arr, 5, 2) << endl;
+    return 0;
+}
 
 // ques - n bonacci series with m sum
 // sol - sliding window technique
-// #include <iostream>
-// using namespace std;
-// void mbbonacci(int n, int m)
-// {
-//     int i = 0;
-//     while (m > 0)
-//     {
-//         cout << 0 << " ";
-//         i++;
-//     }
-//     while ()
-// }
-// int main()
-// {
+#include <iostream>
+using namespace std;
+void mbbonacci(int n, int m)
+{
+    int i = 0;
+    while (m > 0)
+    {
+        cout << 0 << " ";
+        i++;
+    }
+    while ()
+}
+int main()
+{
 
-//     return 0;
-// }
+    return 0;
+}

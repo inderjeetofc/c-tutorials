@@ -145,7 +145,7 @@ bool detectCycleDirected(vector<int> v[], bool visited[], int root, bool parent[
             return true;
         }
     }
-    parent[root] = false;       
+    parent[root] = false;
     return false;
 }
 bool detectCycleBFS(vector<int> v[], bool visited[], int root, int n)
@@ -173,40 +173,112 @@ bool detectCycleBFS(vector<int> v[], bool visited[], int root, int n)
     }
     return false;
 }
+// min spanning tree prob - self solution not prims algo
+int minSpanningTree(vector<int> v[], bool visited[], int weight[][5], int root, int n, int minLen)
+{
+    visited[root] = true;
+    queue<int> q;
+    q.push(root);
+    int check[n];
+    for (int i = 0; i < n; i++)
+        check[i] = INT_MAX;
+    while (!q.empty())
+    {
+        int curr = q.front();
+        q.pop();
+        int minIn;
+        int minWt = INT_MAX;
+        for (auto x : v[curr])
+        {
+            if (!visited[x])
+            {
+                if (check[x] > weight[curr][x])
+                    check[x] = weight[curr][x];
+                if (minWt > check[x])
+                {
+                    minWt = check[x];
+                    minIn = x;
+                }
+            }
+        }
+        cout << minIn << endl;
+        if (!visited[minIn])
+        {
+            visited[minIn] = true;
+            q.push(minIn);
+            minWt = INT_MAX;
+        }
+        if (minWt != INT_MAX)
+            minLen += minWt;
+        else
+            minLen += check[minIn];
+    }
+    return minLen;
+}
 // visited array create function
-void createVisited(vector<int> v[], int n)
+// void createVisited(vector<int> v[], int n)//defination for all other cases
+void createVisited(vector<int> v[], int n, int weight[][5]) // defination for min spanning tree problem
 {
     bool visited[n];
+    int minLen = 0; // only used for min spanning tree prob
     // for detecting cycle in directed graph only use parent array
-    bool parent[n];
-
+    // bool parent[n];
     int count = 0;
     for (int i = 0; i < n; i++)
     {
         visited[i] = false;
-        parent[i] = false; // for detecting cycle in directed graph only use parent array
+        // parent[i] = false; // for detecting cycle in directed graph only use parent array
     }
     for (int i = 0; i < n; i++)
     {
         if (!visited[i])
         {
-            count++; // to count total diconnecte graphs
-            // printBFS(v, visited, i);   //for BFS traversal
-            // printDFS(v, visited, i); // for DFS traversal
-            // shortestPath(v, visited, i);    // shortest path methid 1
-            // method 2 for shortest path doesnt require visited array . hence called from main func directly
-            //----to detect cycle DFS---
-            // cout << "the graph has cycle : " << detectCycle(v, visited, i, i) << endl;
-            // break;
-            // detect cycle BFS
-            // cout << "the graph has cycle : " << detectCycleBFS(v, visited, i, n) << endl;
-            // break;
-            //----to detect cycle DFS directed--
-            cout << "the graph has cycle : " << detectCycleDirected(v, visited, i, parent) << endl;
+            // count++; // to count total diconnecte graphs
+            //         // printBFS(v, visited, i);   //for BFS traversal
+            //         // printDFS(v, visited, i); // for DFS traversal
+            //         // shortestPath(v, visited, i);    // shortest path methid 1
+            //         // method 2 for shortest path doesnt require visited array . hence called from main func directly
+            //         //----to detect cycle DFS---
+            //         // cout << "the graph has cycle : " << detectCycle(v, visited, i, i) << endl;
+            //         // break;
+            //         // detect cycle BFS
+            //         // cout << "the graph has cycle : " << detectCycleBFS(v, visited, i, n) << endl;
+            //         // break;
+            //         //----to detect cycle DFS directed--
+            //         // cout << "the graph has cycle : " << detectCycleDirected(v, visited, i, parent) << endl;
+            //         //-----min spanning tree call
+            minLen = minLen + minSpanningTree(v, visited, weight, i, n, 0);
+            cout << "Min length of spanning tree is - " << minLen << endl;
         }
     }
-    cout << "Number of connected graphs are - " << count << endl;
+    // cout << "Number of connected graphs are - " << count << endl;
     return;
+}
+// minimum distance in weighted graph
+void minDistWeightedGraph(vector<int> v[], int n, int root, int weight[][6])
+{
+    int length[n];
+    for (int i = 0; i < n; i++)
+        length[i] = INT_MAX;
+    queue<int> q;
+    q.push(root);
+    length[root] = 0;
+    while (!q.empty())
+    {
+        int curr = q.front();
+        q.pop();
+        for (auto x : v[curr])
+        {
+            if (length[x] > length[curr] + weight[curr][x])
+            {
+                length[x] = length[curr] + weight[curr][x];
+                q.push(x);
+            }
+        }
+    }
+    for (int i = 0; i < n; i++)
+        cout << length[i] << " ";
+    cout << endl;
 }
 int main()
 {
@@ -252,6 +324,7 @@ int main()
     // createAdjList(v, 1, 2);
     // createAdjList(v, 1, 3);
     // createAdjList(v, 2, 3);
+
     // graph for shortest path eg -2
     // createAdjList(v, 0, 1);
     // createAdjList(v, 0, 2);
@@ -285,10 +358,69 @@ int main()
     // createAdjListDirected(v, 2, 1);
 
     // detect cycle directed graph eg-3
-    createAdjListDirected(v, 0, 1);
-    createAdjListDirected(v, 1, 2);
-    createAdjListDirected(v, 2, 3);
-    createAdjListDirected(v, 1, 3);
-    createVisited(v, n);
+    // createAdjListDirected(v, 0, 1);
+    // createAdjListDirected(v, 1, 2);
+    // createAdjListDirected(v, 2, 3);
+    // createAdjListDirected(v, 3, 1);
+    // createVisited(v, n);
+
+    // minimum distance in weighted graph
+    // int weight[][4] = {
+    //     {0, 1, 0, 0},
+    //     {0, 0, 3, 2},
+    //     {0, 0, 0, 4},
+    //     {0, 0, 0, 0},
+    // };
+    // groph for min weighted dist prob
+    // createAdjListDirected(v, 0, 1);
+    // createAdjListDirected(v, 1, 2);
+    // createAdjListDirected(v, 2, 3);
+    // createAdjListDirected(v, 1, 3);
+
+    // groph for min weighted dist prob graph eg- 2
+    // createAdjListDirected(v, 0, 1);
+    // createAdjListDirected(v, 1, 2);
+    // createAdjListDirected(v, 2, 3);
+    // createAdjListDirected(v, 0, 4);
+    // createAdjListDirected(v, 4, 2);
+    // createAdjListDirected(v, 4, 5);
+    // createAdjListDirected(v, 5, 3);
+    // int weight[][6] = {
+    //     {0, 2, 0, 0, 1, 0},
+    //     {0, 0, 3, 0, 0, 0},
+    //     {0, 0, 0, 6, 0, 0},
+    //     {0, 0, 0, 0, 0, 0},
+    //     {0, 0, 2, 0, 0, 4},
+    //     {0, 0, 0, 1, 0, 0},
+    // };
+    // minDistWeightedGraph(v, n, 0, weight);
+
+    // min spanning tree prob controller
+    // createAdjList(v, 0, 1);
+    // createAdjList(v, 0, 2);
+    // createAdjList(v, 1, 3);
+    // createAdjList(v, 1, 2);
+    // createAdjList(v, 2, 3);
+    // int weight[][4] = {
+    //     {0, 5, 8, 0},
+    //     {5, 0, 10, 15},
+    //     {8, 10, 0, 20},
+    //     {0, 15, 20, 0},
+    // };
+    // min spanning tree prob controller eg-2
+    createAdjList(v, 0, 1);
+    createAdjList(v, 0, 2);
+    createAdjList(v, 1, 3);
+    createAdjList(v, 1, 4);
+    createAdjList(v, 2, 4);
+    createAdjList(v, 3, 4);
+    int weight[][5] = {
+        {0, 8, 9, 0, 0},
+        {8, 0, 0, 10, 3},
+        {9, 0, 0, 0, 5},
+        {0, 10, 0, 0, 6},
+        {0, 3, 5, 6, 0},
+    };
+    createVisited(v, n, weight);
     return 0;
 }
