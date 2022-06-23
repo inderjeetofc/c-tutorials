@@ -222,53 +222,122 @@ int minSpanningTree(vector<int> v[], bool visited[], int weight[][5], int root, 
     }
     return minLen;
 }
-int minSpanningTreeDijkstra(vector<int> v[], int n, bool visited[], int root, int distance[], int weight[][4])
+//------------dijkstras is pending
+// int minSpanningTreeDijkstra(vector<int> v[], int n, bool visited[], int root, int distance[], int weight[][4])
+// {
+//     queue<int> q;
+//     q.push(root);
+//     int minLen = 0;
+//     visited[root] = true;
+//     int minWt;
+//     if (distance[root] == INT_MAX)
+//     {
+//         distance[root] = 0;
+//         minWt = INT_MAX;
+//     }
+//     while (!q.empty())
+//     {
+//         int curr = q.front();
+//         int minIn;
+//         q.pop();
+//         minLen += distance[curr];
+//         for (auto x : v[curr])
+//         {
+//             if (!visited[x])
+//             {
+//                 visited[x] = true;
+//                 if (distance[x] > distance[curr] + weight[curr][x])
+//                     distance[x] = distance[curr] + weight[curr][x];
+//                 if (minWt > distance[x])
+//                 {
+//                     minWt = distance[x];
+//                     minIn = x;
+//                 }
+//                 q.push(x);
+//             }
+//             else if (x != parent[curr])
+//                 return true;
+//         }
+//     }
+//     return false;
+// }
+// personal try - below is kosaraju algo for strongly connected graph - step 1 to find sum value of each index
+// step1 function
+// int sum = 0;
+// int sumArr[5];
+// int kosarajuFindSum(vector<int> v[], bool visited[], int root)
+// {
+//     visited[root] = true;
+//     sum += 1;
+//     sumArr[root] = sum;
+//     for (auto x : v[root])
+//     {
+//         if (!visited[x])
+//             kosarajuFindSum(v, visited, x);
+//     }
+//     sum += 1;
+//     sumArr[root] = sum;
+//     return 0;
+// }
+// correct kosaraju step 1 algo
+stack<int> s;
+void kosarajuStep1(vector<int> v[], bool visited[], int root)
 {
-    queue<int> q;
-    q.push(root);
-    int minLen = 0;
     visited[root] = true;
-    int minWt;
-    if (distance[root] == INT_MAX)
+    for (auto x : v[root])
     {
-        distance[root] = 0;
-        minWt = INT_MAX;
+        if (!visited[x])
+            kosarajuStep1(v, visited, x);
     }
-    while (!q.empty())
+    s.push(root);
+}
+// transpose the graph - change direction of connection
+void kosarajuStep2(vector<int> v[], vector<int> transpose[], int n)
+{
+    for (int i = 0; i < n; i++)
     {
-        int curr = q.front();
-        int minIn;
-        q.pop();
-        minLen += distance[curr];
-        for (auto x : v[curr])
+        for (int j = 0; j < v[i].size(); j++)
+            createAdjListDirected(transpose, v[i][j], i);
+    }
+}
+// kosaraju step 3 print the transposed graph in DFS traversal
+void kosarajuStep3(vector<int> transpose[], bool visited[], int root)
+{
+    visited[root] = true;
+    cout << root << " ";
+    for (auto x : transpose[root])
+    {
+        if (!visited[x])
         {
-            if (!visited[x])
-            {
-                visited[x] = true;
-                if (distance[x] > distance[curr] + weight[curr][x])
-                    distance[x] = distance[curr] + weight[curr][x];
-                if (minWt > distance[x])
-                {
-                    minWt = distance[x];
-                    minIn = x;
-                }
-                q.push(x);
-            }
-            else if (x != parent[curr])
-                return true;
+            visited[x] = true;
+            return kosarajuStep3(transpose, visited, x);
         }
     }
-    return false;
+    cout << endl;
+    return;
+}
+// bell man ford algo for negative weights --same hai dijkstra jaise toh baadme krna
+void bellmanFordAlgo(vector<int> v[], bool visited[], int weight[][4], int n)
+{
+    // visited[root] = true;
 }
 // visited array create function
-// void createVisited(vector<int> v[], int n)//defination for all other cases
-void createVisited(vector<int> v[], int n, int weight[][5]) // defination for min spanning tree problem
+void createVisited(vector<int> v[], int n) // defination for all other cases
+// void createVisited(vector<int> v[], int n, int weight[][5]) // defination for min spanning tree problem only
 {
     bool visited[n];
-    int minLen = 0; // only used for min spanning tree prob
+    // for kosaraju step 2 create transpose
+    vector<int> transpose[n];
+    kosarajuStep2(v, transpose, n);
+    // int minLen = 0; // only used for min spanning tree prob
     // for detecting cycle in directed graph only use parent array
     // bool parent[n];
-    int count = 0;
+    // personal try - for kosaraju step 1 algo - sum array initialisation with 0;
+    // for (int i = 0; i < 4; i++)
+    // {
+    //     sumArr[i] = 0;
+    // }
+    // int count = 0;
     for (int i = 0; i < n; i++)
     {
         visited[i] = false;
@@ -279,7 +348,7 @@ void createVisited(vector<int> v[], int n, int weight[][5]) // defination for mi
         if (!visited[i])
         {
             // count++; // to count total diconnecte graphs
-            //         // printBFS(v, visited, i);   //for BFS traversal
+            // printBFS(transpose, visited, i); // for BFS traversal
             //         // printDFS(v, visited, i); // for DFS traversal
             //         // shortestPath(v, visited, i);    // shortest path methid 1
             //         // method 2 for shortest path doesnt require visited array . hence called from main func directly
@@ -294,8 +363,32 @@ void createVisited(vector<int> v[], int n, int weight[][5]) // defination for mi
             //         //-----min spanning tree call prims algo ---pending
             // minLen = minLen + minSpanningTree(v, visited, weight, i, n, 0);
             // cout << "Min length of spanning tree is - " << minLen << endl;
+            // kosaraju algo step 1 call
+            // kosarajuFindSum(v, visited, 1);//personal try approach
+            // kosarajuStep1(v, visited, 1);
         }
     }
+    // personal try -  kosaraju algo step 1 result sumArray
+    //  for (int i = 0; i < n; i++)
+    //      cout << sumArr[i] << " ";
+    //  cout << endl;
+    // kosaraju step 1 using stack
+    // while (!s.empty())
+    // {
+    //     cout << s.top() << " ";
+    //     s.pop();
+    // }
+    // cout << endl;
+    // --kosaraju step 3
+    // bool check[n];
+    // for (int i = 0; i < n; i++)
+    //     check[i] = false;
+    // while (!s.empty())
+    // {
+    //     if (!check[s.top()])
+    //         kosarajuStep3(transpose, check, s.top());
+    //     s.pop();
+    // }
     // cout << "Number of connected graphs are - " << count << endl;
     return;
 }
@@ -453,19 +546,27 @@ int main()
     //     {0, 15, 20, 0},
     // };
     // min spanning tree prob controller eg-2
-    createAdjList(v, 0, 1);
-    createAdjList(v, 0, 2);
-    createAdjList(v, 1, 3);
-    createAdjList(v, 1, 4);
-    createAdjList(v, 2, 4);
-    createAdjList(v, 3, 4);
-    int weight[][5] = {
-        {0, 8, 9, 0, 0},
-        {8, 0, 0, 10, 3},
-        {9, 0, 0, 0, 5},
-        {0, 10, 0, 0, 6},
-        {0, 3, 5, 6, 0},
-    };
-    createVisited(v, n, weight);
+    // createAdjList(v, 0, 1);
+    // createAdjList(v, 0, 2);
+    // createAdjList(v, 1, 3);
+    // createAdjList(v, 1, 4);
+    // createAdjList(v, 2, 4);
+    // createAdjList(v, 3, 4);
+    // int weight[][5] = {
+    //     {0, 8, 9, 0, 0},
+    //     {8, 0, 0, 10, 3},
+    //     {9, 0, 0, 0, 5},
+    //     {0, 10, 0, 0, 6},
+    //     {0, 3, 5, 6, 0},
+    // };
+    // createVisited(v, n, weight);
+
+    // kosaraju strongly connected graph step 1 call to visited function
+    createAdjListDirected(v, 0, 1);
+    createAdjListDirected(v, 1, 2);
+    createAdjListDirected(v, 2, 0);
+    createAdjListDirected(v, 1, 3);
+    createAdjListDirected(v, 3, 4);
+    createVisited(v, n);
     return 0;
 }
